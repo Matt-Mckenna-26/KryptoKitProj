@@ -1,21 +1,28 @@
-import 'react-perfect-scrollbar/dist/css/styles.css';
-import React from 'react';
-import { useRoutes } from 'react-router-dom';
-import { ThemeProvider } from '@material-ui/core';
-import GlobalStyles from 'src/components/GlobalStyles';
-import 'src/mixins/chartjs';
-import theme from 'src/theme';
-import routes from 'src/routes';
+import React, {} from 'react';
+import './App.css';
+import Nav from './components/Nav';
+import Header from './components/Header';
+import BuySell from './views/BuySell';
+import Dashboard from './views/Dashboard';
+import Wallet from './views/Wallet';
+import {Router} from '@reach/router';
+import {ContextProvider} from './components/ContextProvider';
 
-const App = () => {
-  const routing = useRoutes(routes);
-
+function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyles />
-      {routing}
-    </ThemeProvider>
+    <ContextProvider>
+      <div className="App">
+          <Header />
+          <Nav />
+          <Router>
+            <BuySell path="" />
+            <Dashboard path="" />
+            <Wallet path="" />
+          </Router>
+    
+      </div>
+    </ContextProvider>
   );
-};
+}
 
 export default App;
