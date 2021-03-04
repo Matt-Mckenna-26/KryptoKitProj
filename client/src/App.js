@@ -1,4 +1,4 @@
-import React, {} from 'react';
+import React from 'react';
 import './App.css';
 import Nav from './components/Nav';
 import Header from './components/Header';
@@ -15,9 +15,9 @@ function App() {
           <Header />
           <Nav />
           <Router>
-            <BuySell path="" />
-            <Dashboard path="" />
-            <Wallet path="" />
+            <BuySell path="/buysell" />
+            <Dashboard path="/dashboard"/>
+            <Wallet path="/wallet" />
           </Router>
     
       </div>
