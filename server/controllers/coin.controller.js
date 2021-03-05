@@ -30,4 +30,15 @@ module.exports.GetCoinPortfolioPrices = (req, res) => {
         res.status(400).send({err})
     })
 }
+module.exports.GetCoinDetailedData = (req, res) => {
+    //https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Cdogecoin%2Clitecoin&vs_currencies=usd example
+    axios.get(`https://api.coingecko.com/api/v3/coins/${coinName}`)
+    .then(axResp => {
+        res.send(axResp.data)
+    })
+    .catch(err => {
+        res.status(400).send({err})
+    })
+}
+
 
