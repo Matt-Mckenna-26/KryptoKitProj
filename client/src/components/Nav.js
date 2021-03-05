@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from '@reach/router';
+import { Link } from '@reach/router';
 
 
 const Nav = () => {
@@ -7,9 +7,9 @@ const Nav = () => {
     return(
         <div>
             <h3>Main Navbar</h3>
-            <Link>Dashboard</Link>
-            <Link>Crypto Wallet</Link>
-            <Link>Buy/Sell</Link>
+            <Link to="/dashboard">Dashboard</Link>
+            <Link to="/wallet">Crypto Wallet</Link>
+            <Link to="/buysell">Buy/Sell</Link>
         </div>
     )
 }
