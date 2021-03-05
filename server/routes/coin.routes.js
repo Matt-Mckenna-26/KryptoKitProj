@@ -13,3 +13,7 @@ module.exports = app => {
 module.exports = app => {
     app.get('api/coinPricesInPortfolio/:coinNames', CoinController.GetCoinPortfolioPrices)
 }
+
+module.exports = app => {
+    app.get(`api/coinDetailedData/:coinName`, CoinController.GetCoinDetailedData)
+}
