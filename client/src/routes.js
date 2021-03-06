@@ -19,7 +19,7 @@ import Login from "views/Login.js";
 import Customers from "views/Customers.js";
 import Wallet from "views/Wallet.js";
 import Trade from "views/Trade.js";
-import Buysell from "views/Buysell.js";
+import Buysell from "views/BuySell.js";
 import Marketcap from "views/Marketcap.js";
 
 var routes = [
