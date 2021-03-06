@@ -1,4 +1,5 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
+import {GlobalContext} from "./ContextProvider";
 import axios from "axios";
 
 const SignUp = props => {
