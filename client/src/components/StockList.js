@@ -4,7 +4,7 @@ import {GlobalContext} from './ContextProvider'
 const StockList = (props) => {
 
     const {loggedUser, focusCoin} = useContext(GlobalContext)
-    const [loggedInUser, setLoggedInUser] = loggedInUser;
+    const [loggedInUser, setLoggedInUser] = loggedUser;
     const [focusedCoin, setFocusedCoin] = focusCoin;
 
     return(
