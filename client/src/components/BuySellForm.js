@@ -1,5 +1,19 @@
 import React, {useContext, useState, useEffect } from 'react';
 import { navigate, Link } from '@reach/router';
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  Container,
+  Button,
+  FormGroup,
+  Form,
+  Input,
+  InputGroupAddon,
+  InputGroupText,
+  InputGroup,
+} from "reactstrap";
+
 import axios from 'axios';
 
 const BuySellForm = () => {
@@ -31,8 +45,8 @@ const BuySellForm = () => {
         })
         .catch((err) => console.log(err));  
     }
-// need to remove all style before production. style is just for viewable model
     return(
+<<<<<<< HEAD
         <div>
             <h3>Funds</h3>
             <form>
@@ -41,29 +55,53 @@ const BuySellForm = () => {
                 {
                 allCrypto.map((list, index) => (
                     <div className="singleCoin" style={{display:"inline-block", margin:"20px 30px", width:"100px", height:"110px", outline:"1px solid black", paddingBottom:"20px"}} key={index}>
+=======
+        <Container>
+        <Form role="form">
+            <FormGroup className="mb-3">
+            <InputGroup className="input-group-alternative center" style={{width:"400px", margin:".5em 0"}}>
+                <InputGroupAddon addonType="prepend">
+                <InputGroupText>
+                    <i className="ni ni-lock-circle-open" />
+                </InputGroupText>
+                </InputGroupAddon>
+                <Input
+                name="amountToSpend"
+                placeholder="USD Currency (min $100)"
+                type="text"
+                autoComplete="new-amount"
+                
+                onChange={ (e) => setUserDollarsSpent(e.target.value)}
+                />
+                <Button className="ni ni-check-bold" color="primary" type="submit">
+                Buy Coin
+                </Button>
+            </InputGroup>
+            {
+            allCrypto.map((list, index) => (
+                <Card className="singleCoin shadow" style={{ display:"inline-grid", width: "12em", margin:".5em" }} key={index}>
+                    <CardHeader className="bg-transparent text-center">
+                        <img src={list.image.small} />
+                    </CardHeader>
+                    <CardBody className="text-center">
+                    <h4 for="list.name">{list.name}</h4>
+                        <p style={{fontSize:"10px", margin:"5px 0px"}}>Current Price: ${(list.market_data.current_price.usd).toLocaleString(undefined, {minimumFractionDigits:2})}</p>
+>>>>>>> 67f96424465e0af272242ba27c3f7360ba69cacc
                         <input
-                            type="radio" 
+                            type="checkbox" 
                             id={list.name}
                             name="coinSelect"
                             value={list.name}
-                            style={{display:"block", marginLeft:"auto", marginBottom:"5px"}}
+                            className="form-check-input"
+                            style={{ margin:"0.5em auto" }}
                         />
-                        <img style={{display:"block", margin:"0 auto"}} src={list.image.small} />
-                        <h6 style={{width:"100px", margin:"5px 0px"}} for="list.name">{list.name}</h6>
-                        <p style={{fontSize:"10px", margin:"5px 0px"}}>Current Price: ${(list.market_data.current_price.usd).toLocaleString(undefined, {minimumFractionDigits:2})}</p>
-                    </div>
-                ))
-                }
-                </div>
-                <input
-                    type="text"
-                    name="amountToSpend"
-                    placeholder="USD Currency (min $100)"
-                    onChange={ (e) => setUserDollarsSpent(e.target.value)}
-                    />
-                <button type="submit">Buy Coin</button>
-            </form>
-        </div>
+                    </CardBody>
+                </Card>
+            ))
+            }
+            </FormGroup>
+        </Form>
+        </Container>
     )
 }
 
