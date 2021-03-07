@@ -4,12 +4,4 @@
 
 ## Quick start
 
-- `npm i`
-
-## Documentation
-
-## File Structure
-
-## Browser Support
-
-## Resources
+- `npm i` in both client and server folders
