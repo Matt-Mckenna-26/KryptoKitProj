@@ -28,7 +28,7 @@ const Login = () => {
                 © {new Date().getFullYear()}{" "}
                 <a
                   className="font-weight-bold ml-1"
-                  href="https://github.com/dannjing/?ref=adr-auth-footer"
+                  href="https://github.com/Matt-Mckenna-26/KryptoKitProj/?ref=adr-auth-footer"
                   target="_blank"
                 >
                   KryptoKit
@@ -39,7 +39,7 @@ const Login = () => {
               <Nav className="nav-footer justify-content-center justify-content-xl-end">
                 <NavItem>
                   <NavLink
-                    href="https://github.com/dannjing/?ref=adr-auth-footer"
+                    href="https://www.codingdojo.com/?ref=adr-auth-footer"
                     target="_blank"
                   >
                     CodingDojo
