@@ -60,13 +60,13 @@ const BuySellForm = () => {
                 placeholder="USD Currency (min $100)"
                 type="text"
                 autoComplete="new-amount"
-                
                 onChange={ (e) => setUserDollarsSpent(e.target.value)}
                 />
                 <Button className="ni ni-check-bold" color="primary" type="submit">
                 Buy Coin
                 </Button>
             </InputGroup>
+            <div className="test"style={{height:"420px", overflowY:"scroll"}}>
             {
             allCrypto.map((list, index) => (
                 <Card className="singleCoin shadow" style={{ display:"inline-grid", width: "12em", margin:".5em" }} key={index}>
@@ -75,9 +75,9 @@ const BuySellForm = () => {
                     </CardHeader>
                     <CardBody className="text-center">
                     <h4 for="list.name">{list.name}</h4>
-                        <p style={{fontSize:"10px", margin:"5px 0px"}}>Current Price: ${(list.market_data.current_price.usd).toLocaleString(undefined, {minimumFractionDigits:2})}</p>
+                        <p style={{fontSize:"12px", margin:"5px 0px"}}>Current Price: ${(list.market_data.current_price.usd).toLocaleString(undefined, {minimumFractionDigits:2})}</p>
                         <input
-                            type="checkbox" 
+                            type="radio" 
                             id={list.name}
                             name="coinSelect"
                             value={list.name}
@@ -88,6 +88,7 @@ const BuySellForm = () => {
                 </Card>
             ))
             }
+            </div>
             </FormGroup>
         </Form>
         </Container>
