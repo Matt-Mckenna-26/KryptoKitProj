@@ -29,7 +29,7 @@ import {
 import Header from "components/Headers/Header.js";
 import Coin from '../components/Coin';
 
-const Marketcap = () => {
+function Marketcap()  {
   const [coins, setCoins] = useState([]);
   const pageRef = useRef(1);
 
@@ -43,17 +43,6 @@ const Marketcap = () => {
     return () => clearInterval(interval);
   },[pageRef])
 
-  const [searchState, setSearchState] = useState(false);
-  const [searchedCoin, setSearchedCoin] = useState([]);
-  const [searched, setSearched] = useState('');
-
-  const onClick = async (e) => {
-    e.preventDefault();
-    const result = await axios.get(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${searched}`);
-    console.log(result.data);
-    setSearchedCoin(result.data);
-    setSearchState(true);
-  }
   return (
     <>
       <Header />
@@ -93,6 +82,6 @@ const Marketcap = () => {
       </Container>
     </>
   );
-};
+}
 
 export default Marketcap;

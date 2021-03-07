@@ -1,6 +1,6 @@
 import React from "react";
 import {Line, Bar} from 'react-chartjs-2';
-//import '../scss/Components/Chart.scss';
+import '../assets/css/kryptokit-dashboard-react.min.css';
 
 const Chart = ({chartDate, chartPrice, coin}) => {
   const data = {

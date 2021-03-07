@@ -11,6 +11,7 @@ import AuthLayout from "layouts/Auth.js";
 import { ContextProvider } from './components/ContextProvider';
 
 function App() {
+  const external_link="https://reactrouter.com/web/guides/quick-start";
   return (
     <ContextProvider>
       <BrowserRouter>

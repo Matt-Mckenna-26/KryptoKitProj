@@ -1,23 +1,11 @@
 import React from 'react';
-import {Link, Redirect} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import { 
-  Badge,
-  Card,
-  CardHeader,
-  CardFooter,
   Media,
-  Pagination,
-  PaginationItem,
-  PaginationLink,
   Table,
-  Container,
-  Row,
-  UncontrolledTooltip,
  } from 'reactstrap';
-//import '../scss/Components/Coin.scss';
 
 const Coin = ({coins}) => {
-  //console.log(coins)
   return (
     <div style={{ margin:"0", padding:"0"}}>
       {/* Page content */}
@@ -40,13 +28,28 @@ const Coin = ({coins}) => {
             {coins.map((coin, i) => <tr className={`coin-container ${(i + 2) % 2 === 0 ? "even" : "odd"}`} key={coin.name}>
               <td>{coin.market_cap_rank}.</td>
               <td>
-                <Link to={`/admin/coin/${coin.id}`}>
+                <Link to={{
+                  pathname: `https://www.cryptocurrencychart.com/coin/${coin.symbol.toUpperCase()}#content`
+                  }}  
+                  target="_blank"
+                >
                   <Media className="align-items-center"><img src={coin.image} alt={coin.id} style={{width:"32px"}} /></Media>
                 </Link>
               </td>
-              <td><Link to={`/admin/coin/${coin.id}`}>{coin.id}</Link></td>
               <td>
-              <Link to={`/admin/coin/${coin.id}`}>
+                <Link to={{
+                  pathname: `https://www.cryptocurrencychart.com/coin/${coin.symbol.toUpperCase()}#content`
+                  }}  
+                  target="_blank"
+                >{coin.id}
+                </Link>
+              </td>
+              <td>
+              <Link to={{
+                pathname: `https://www.cryptocurrencychart.com/coin/${coin.symbol.toUpperCase()}#content`
+                }}  
+                target="_blank"
+              >
                 {coin.symbol.toUpperCase()}
               </Link>
               </td>

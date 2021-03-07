@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { CircularProgress } from '@material-ui/core';
+//import { CircularProgress } from '@material-ui/core';
 import axios from 'axios';
-import '../scss/Routes/Main.scss';
-import Coin from '../Components/Coin';
-import Logo from '../images/KryptoKitLogo.png';
+//import '../scss/Routes/Main.scss';
+import Coin from '../components/Coin';
+//import Logo from '../images/KryptoKitLogo.png';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
+//import { Helmet } from 'react-helmet';
 
 function Main() {
   const [coins, setCoins] = useState([]);
@@ -35,13 +35,6 @@ function Main() {
  
   return (
     <div className="loaded">
-    <Helmet>
-      <title>Group Project | Home</title>
-    </Helmet>
-    <span className="titlebg">
-     <span><img src={Logo} className="banner" /></span>
-     <span className="title">Crypto Dashboard</span>
-    </span>
     <div className="container">
       <form>
         <input placeholder="Search Crypto by Lowercase Name" onChange={e => setSearched(e.target.value)} />
@@ -65,7 +58,7 @@ function Main() {
       }
       {
         coins[0] === undefined ? (
-          <CircularProgress />
+          {/* <CircularProgress /> */}
         ) : (
           <div className="coin-table">
             <button onClick={() => {pageRef.current === 1 ? pageRef.current = 1 : pageRef.current -= 1}}>
