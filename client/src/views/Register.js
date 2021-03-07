@@ -40,7 +40,7 @@ const Register = () => {
     <>
       <Col lg="6" md="8">
         <Card className="bg-secondary shadow border-0">
-          <CardHeader className="bg-transparent pb-5">
+          <CardHeader className="bg-transparent pb-4">
             <div className="text-muted text-center mt-2 mb-4">
               <small>Sign up with</small>
             </div>
@@ -48,7 +48,6 @@ const Register = () => {
               <Button
                 className="btn-neutral btn-icon mr-4"
                 color="default"
-                href="#pablo"
                 onClick={ handleAlert }
               >
                 <span className="btn-inner--icon">
@@ -65,7 +64,6 @@ const Register = () => {
               <Button
                 className="btn-neutral btn-icon"
                 color="default"
-                href="#pablo"
                 onClick={ handleAlert }
               >
                 <span className="btn-inner--icon">
@@ -81,7 +79,7 @@ const Register = () => {
               </Button>
             </div>
           </CardHeader>
-          <CardBody className="px-lg-5 py-lg-5">
+          <CardBody className="px-lg-5 py-lg-3">
             <div className="text-center text-muted mb-4">
               <small>Sign in with Credentials</small>
             </div>
@@ -153,7 +151,7 @@ const Register = () => {
                 </Col>
               </Row>
               <div className="text-center">
-                <Button className="mt-4" color="primary" type="button">
+                <Button className="mt-1" color="primary" type="button">
                   Create account
                 </Button>
               </div>

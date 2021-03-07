@@ -28,12 +28,13 @@ import {
   Row,
   Col,
 } from "reactstrap";
+import { Link } from "react-router-dom";
 
 const Login = () => {
 
   const handleAlert = (e) => {
     e.preventDefault();
-    alert("Sign in option coming soon!");
+    alert("Function coming soon!");
   }
 
   return (
@@ -48,7 +49,6 @@ const Login = () => {
               <Button
                 className="btn-neutral btn-icon"
                 color="default"
-                href="#pablo"
                 onClick={ handleAlert }
               >
                 <span className="btn-inner--icon">
@@ -65,7 +65,6 @@ const Login = () => {
               <Button
                 className="btn-neutral btn-icon"
                 color="default"
-                href="#pablo"
                 onClick={ handleAlert }
               >
                 <span className="btn-inner--icon">
@@ -137,22 +136,19 @@ const Login = () => {
         </Card>
         <Row className="mt-3">
           <Col xs="6">
-            <a
+            <Link to="./login"
               className="text-light"
-              href="#pablo"
-              onClick={(e) => e.preventDefault()}
+              onClick={ handleAlert }
             >
               <small>Forgot password?</small>
-            </a>
+            </Link>
           </Col>
           <Col className="text-right" xs="6">
-            <a
+            <Link to="./register"
               className="text-light"
-              href="#pablo"
-              onClick={(e) => e.preventDefault()}
             >
               <small>Create new account</small>
-            </a>
+            </Link>
           </Col>
         </Row>
       </Col>

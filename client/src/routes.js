@@ -21,6 +21,7 @@ import Wallet from "views/Wallet.js";
 import Trade from "views/Trade.js";
 import Buysell from "views/BuySell.js";
 import Marketcap from "views/Marketcap.js";
+import Coin from "views/Coin.js";
 
 var routes = [
   {
@@ -78,6 +79,13 @@ var routes = [
     icon: "ni ni-circle-08 text-red",
     component: Register,
     layout: "/auth",
+  },
+  {
+    path: "/coin",
+    name: "",
+    icon: "",
+    component: Coin,
+    layout: "/admin",
   },
   // {
   //   path: "/user-profile",
