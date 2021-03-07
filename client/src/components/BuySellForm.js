@@ -34,9 +34,9 @@ const BuySellForm = () => {
 // need to remove all style before production. style is just for viewable model
     return(
         <div>
-            <h3>Choose Crypto</h3>
             <h3>Funds</h3>
             <form>
+                <h3>Choose Crypto</h3>
                 <div className="coinArray" style={{width:"340px", height:"400px", overflowY:"scroll",}}>
                 {
                 allCrypto.map((list, index) => (
