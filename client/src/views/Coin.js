@@ -1,5 +1,5 @@
-import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
+import axios from "axios";
 import Chart from "../components/Chart";
 import Details from "../components/Details";
 import {useDarkMode} from "./useDarkMode"
