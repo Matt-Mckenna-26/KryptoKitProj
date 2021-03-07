@@ -46,16 +46,6 @@ const BuySellForm = () => {
         .catch((err) => console.log(err));  
     }
     return(
-<<<<<<< HEAD
-        <div>
-            <h3>Funds</h3>
-            <form>
-                <h3>Choose Crypto</h3>
-                <div className="coinArray" style={{width:"340px", height:"400px", overflowY:"scroll",}}>
-                {
-                allCrypto.map((list, index) => (
-                    <div className="singleCoin" style={{display:"inline-block", margin:"20px 30px", width:"100px", height:"110px", outline:"1px solid black", paddingBottom:"20px"}} key={index}>
-=======
         <Container>
         <Form role="form">
             <FormGroup className="mb-3">
@@ -86,7 +76,6 @@ const BuySellForm = () => {
                     <CardBody className="text-center">
                     <h4 for="list.name">{list.name}</h4>
                         <p style={{fontSize:"10px", margin:"5px 0px"}}>Current Price: ${(list.market_data.current_price.usd).toLocaleString(undefined, {minimumFractionDigits:2})}</p>
->>>>>>> 67f96424465e0af272242ba27c3f7360ba69cacc
                         <input
                             type="checkbox" 
                             id={list.name}
