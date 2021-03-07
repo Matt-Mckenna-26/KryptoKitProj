@@ -1,16 +1,3 @@
-/*!
-
-=========================================================
-* KryptoKit - v1.0.0
-=========================================================
-
-* Custom Code by CodingDojo Group Project Dev Team
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React, { useState } from "react";
 // reactstrap components
 import {
