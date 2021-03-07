@@ -1,34 +1,25 @@
 import React from 'react';
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import './App.css';
-import LogReg from "./views/LogReg";
-import LoginForm from "./views/LoginForm";
-import Nav from './components/Nav';
-import Header from './components/Header';
-import BuySell from './views/BuySell';
-import Dashboard from './views/Dashboard';
-import Wallet from './views/Wallet';
-import { Router } from '@reach/router';
+import "assets/plugins/nucleo/css/nucleo.css";
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import "assets/scss/kryptokit-dashboard-react.scss";
+
+import AdminLayout from "layouts/Admin.js";
+import AuthLayout from "layouts/Auth.js";
+
 import { ContextProvider } from './components/ContextProvider';
 
 function App() {
   return (
     <ContextProvider>
-      <div className="App">
-          <Header />
-          <Nav />
-          <Router>
-<<<<<<< HEAD
-            <BuySell path="/buysell" />
-            <Dashboard path="/dashboard" />
-=======
-            <LogReg path="/"/>
-            <LoginForm path="/login"/> 
-            <BuySell path="/buysell" />
-            <Dashboard path="/dashboard"/>
->>>>>>> 33cc9956f69cb22cc9f3fce1329fd1f427090232
-            <Wallet path="/wallet" />
-          </Router>
-      </div>
+      <BrowserRouter>
+        <Switch>
+          <Route path="/admin" render={(props) => <AdminLayout {...props} />} />
+          <Route path="/auth" render={(props) => <AuthLayout {...props} />} />
+          <Redirect from="/" to="/admin/index" />
+        </Switch>
+      </BrowserRouter>
     </ContextProvider>
   );
 }
