@@ -46,10 +46,10 @@ const BuySellForm = () => {
         .catch((err) => console.log(err));  
     }
     return(
-        <Container>
+        <Container fluid>
         <Form role="form">
             <FormGroup className="mb-3">
-            <InputGroup className="input-group-alternative center" style={{width:"400px", margin:".5em 0"}}>
+            <InputGroup className="input-group-alternative center" style={{width:"400px", margin:".5em 0 1em 0"}}>
                 <InputGroupAddon addonType="prepend">
                 <InputGroupText>
                     <i className="ni ni-lock-circle-open" />
@@ -67,9 +67,10 @@ const BuySellForm = () => {
                 Buy Coin
                 </Button>
             </InputGroup>
+            <div style={{ height:"420px",overflowY:"scroll"}}>
             {
             allCrypto.map((list, index) => (
-                <Card className="singleCoin shadow" style={{ display:"inline-grid", width: "12em", margin:".5em" }} key={index}>
+                <Card className="singleCoin shadow-sm" style={{ display:"inline-grid", width: "12em", margin:".5em" }} key={index}>
                     <CardHeader className="bg-transparent text-center">
                         <img src={list.image.small} />
                     </CardHeader>
@@ -88,6 +89,7 @@ const BuySellForm = () => {
                 </Card>
             ))
             }
+            </div>
             </FormGroup>
         </Form>
         </Container>
