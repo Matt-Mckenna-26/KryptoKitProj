@@ -250,7 +250,7 @@ const Sidebar = (props) => {
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="https://github.com/Matt-Mckenna-26/Crypto-Group-Proj?ref=adr-admin-sidebar">
+              <NavLink href="https://github.com/Andrewgl22?ref=adr-admin-sidebar">
                 <img 
                   alt="face" 
                   width="32" 
@@ -278,7 +278,7 @@ const Sidebar = (props) => {
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="https://github.com/Matt-Mckenna-26/Crypto-Group-Proj?ref=adr-admin-sidebar">
+              <NavLink href="https://github.com/DanielHenderson-17?ref=adr-admin-sidebar">
                 <img 
                   alt="face" 
                   width="32" 
