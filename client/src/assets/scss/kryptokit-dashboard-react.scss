@@ -1,0 +1,78 @@
+/*!
+
+=========================================================
+* KryptoKit - v1.0.0
+=========================================================
+
+* Custom Code by CodingDojo Group Project Dev Team
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+*/
+
+// Core
+
+@import "kryptokit-dashboard/custom/functions";
+@import "kryptokit-dashboard/custom/variables";
+@import "kryptokit-dashboard/custom/mixins";
+
+// bootstrap (4.6.0) components
+
+@import "~bootstrap/scss/root";
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/type";
+@import "~bootstrap/scss/images";
+@import "~bootstrap/scss/code";
+@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/tables";
+@import "~bootstrap/scss/forms";
+@import "~bootstrap/scss/buttons";
+@import "~bootstrap/scss/transitions";
+@import "~bootstrap/scss/dropdown";
+@import "~bootstrap/scss/button-group";
+@import "~bootstrap/scss/input-group";
+@import "~bootstrap/scss/custom-forms";
+@import "~bootstrap/scss/nav";
+@import "~bootstrap/scss/navbar";
+@import "~bootstrap/scss/card";
+@import "~bootstrap/scss/breadcrumb";
+@import "~bootstrap/scss/pagination";
+@import "~bootstrap/scss/badge";
+@import "~bootstrap/scss/jumbotron";
+@import "~bootstrap/scss/alert";
+@import "~bootstrap/scss/progress";
+@import "~bootstrap/scss/media";
+@import "~bootstrap/scss/list-group";
+@import "~bootstrap/scss/close";
+@import "~bootstrap/scss/modal";
+@import "~bootstrap/scss/tooltip";
+@import "~bootstrap/scss/popover";
+@import "~bootstrap/scss/carousel";
+@import "~bootstrap/scss/utilities";
+@import "~bootstrap/scss/print";
+
+// kryptokit utilities and components
+
+@import "kryptokit-dashboard/custom/reboot";
+@import "kryptokit-dashboard/custom/utilities";
+@import "kryptokit-dashboard/custom/components";
+
+// Vendor (Plugins)
+
+@import "kryptokit-dashboard/custom/vendors";
+
+// Docs components
+
+@import "kryptokit-dashboard/docs/variables";
+@import "kryptokit-dashboard/docs/nav";
+@import "kryptokit-dashboard/docs/clipboard-js";
+@import "kryptokit-dashboard/docs/component-examples";
+@import "kryptokit-dashboard/docs/prism";
+@import "kryptokit-dashboard/docs/content";
+@import "kryptokit-dashboard/docs/sidebar";
+@import "kryptokit-dashboard/docs/footer";
+
+// React Differences
+@import "react/react-differences";
