@@ -66,11 +66,7 @@ const BuySellForm = () => {
                 Buy Coin
                 </Button>
             </InputGroup>
-<<<<<<< HEAD
-            <div className="test"style={{height:"420px", overflowY:"scroll"}}>
-=======
             <div style={{ height:"420px",overflowY:"scroll"}}>
->>>>>>> ed77e2b540c903efe8274be3aca33bbc6ec3322c
             {
             allCrypto.map((list, index) => (
                 <Card className="singleCoin shadow-sm" style={{ display:"inline-grid", width: "12em", margin:".5em" }} key={index}>
