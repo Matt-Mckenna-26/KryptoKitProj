@@ -12,6 +12,7 @@ import {
   InputGroupAddon,
   InputGroupText,
   InputGroup,
+  Label,
 } from "reactstrap";
 
 import axios from 'axios';
@@ -20,11 +21,13 @@ const BuySellForm = () => {
     const [ userDollarsSpent, setUserDollarsSpent ] = useState("");
     const [ allCrypto, setAllCrypto ] = useState([]);
     const [ errs, setErrs ] = useState({});
+    const [selectedCoin, setSelectedCoin] = useState(undefined);
     
     useEffect(() => {
         axios
             .get("https://api.coingecko.com/api/v3/coins")
-            .then((res) => setAllCrypto(res.data))
+            .then((res) =>{setAllCrypto(res.data)
+            })
             .catch((err) => console.log(err));
     }, []);
 
@@ -50,6 +53,15 @@ const BuySellForm = () => {
         <Form role="form">
             <FormGroup className="mb-3">
             <InputGroup className="input-group-alternative center" style={{width:"400px", margin:".5em 0 1em 0"}}>
+            <Input 
+                name="selectedCoinName"
+                disabled={true}
+                type="text"
+                defaultValue ='Select a coin below to purchase'
+                value = {selectedCoin !== undefined ? selectedCoin.name : 'Select a coin below to purchase'}
+                />
+            </InputGroup>
+            <InputGroup className="input-group-alternative center" style={{width:"400px", margin:".5em 0 1em 0"}}>
                 <InputGroupAddon addonType="prepend">
                 <InputGroupText>
                     <i className="ni ni-lock-circle-open" />
@@ -67,6 +79,17 @@ const BuySellForm = () => {
                 Buy Coin
                 </Button>
             </InputGroup>
+            <InputGroup className="input-group-alternative center" style={{width:"400px", margin:".5em 0 1em 0"}}>
+            <Label className = 'p-2'>Number of Coins</Label>
+            <Input
+                className ='p-2'
+                name="numOfCoins"
+                disabled={true}
+                type="text"
+                defaultValue = {0}
+                value = {selectedCoin !== undefined ? userDollarsSpent/selectedCoin.market_data.current_price.usd : 0}
+                />
+            </InputGroup>
             <div style={{ height:"420px",overflowY:"scroll"}}>
             {
             allCrypto.map((list, index) => (
@@ -76,9 +99,10 @@ const BuySellForm = () => {
                     </CardHeader>
                     <CardBody className="text-center">
                     <h4 for="list.name">{list.name}</h4>
-                        <p style={{fontSize:"10px", margin:"5px 0px"}}>Current Price: ${(list.market_data.current_price.usd).toLocaleString(undefined, {minimumFractionDigits:2})}</p>
+                        <p style={{fontSize:"15px", margin:"5px 0px"}}>Current Price: ${(list.market_data.current_price.usd).toLocaleString(undefined, {minimumFractionDigits:2})}</p>
                         <input
-                            type="checkbox" 
+                            type="radio" 
+                            onClick={(e) => setSelectedCoin(list)}
                             id={list.name}
                             name="coinSelect"
                             value={list.name}
