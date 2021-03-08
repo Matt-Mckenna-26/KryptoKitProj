@@ -17,7 +17,7 @@ import Index from "views/Index.js";
 import Register from "views/Register.js";
 import Login from "views/Login.js";
 import Customers from "views/Customers.js";
-//import Wallet from "views/Wallet.js";
+import Wallet from "views/Wallet.js";
 //import Trade from "views/Trade.js";
 import Buysell from "views/BuySell.js";
 import SellView from "views/SellView.js"
@@ -39,7 +39,6 @@ var routes = [
     component: Wallet,
     layout: "/admin",
   },
-<<<<<<< HEAD
   // {
   //   path: "/trade",
   //   name: "Trading",
@@ -47,7 +46,6 @@ var routes = [
   //   component: Trade,
   //   layout: "/admin",
   // },
-=======
   {
     path: "/buy",
     name: "Buy",
@@ -55,7 +53,6 @@ var routes = [
     component: Buysell,
     layout: "/admin",
   },
->>>>>>> 1efb3652d88437311f768ddd6b505639e6c3d098
   {
     path: "/sell",
     name: "Sell",
@@ -63,13 +60,11 @@ var routes = [
     component: SellView,
     layout: "/admin",
   },
-<<<<<<< HEAD
   // {
   //   path: "/icons",
   //   name: "My Wallet",
   //   icon: "ni ni-credit-card text-grey",
   //   component: Wallet,
-=======
   {
     path: "/marketcap",
     name: "Marketcap",
@@ -82,7 +77,6 @@ var routes = [
   //   name: "Trading",
   //   icon: "ni ni-chart-bar-32 text-orange",
   //   component: Trade,
->>>>>>> 1efb3652d88437311f768ddd6b505639e6c3d098
   //   layout: "/admin",
   // },
   {
