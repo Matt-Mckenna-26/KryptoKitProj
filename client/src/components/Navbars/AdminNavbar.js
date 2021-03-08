@@ -32,6 +32,7 @@ import {
 } from "reactstrap";
 
 const AdminNavbar = (props) => {
+  
   return (
     <>
       <Navbar className="navbar-top navbar-dark" expand="md" id="navbar-main">
@@ -69,7 +70,7 @@ const AdminNavbar = (props) => {
                   </span> */}
                   <Media className="ml-2 d-none d-lg-block">
                     <span className="mb-0 text-sm font-weight-bold text-white">
-                      Welcome Anonymous
+                      Welcome Member
                     </span>
                   </Media>
                 </Media>

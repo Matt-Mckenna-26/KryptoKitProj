@@ -80,13 +80,7 @@ var routes = [
     component: Register,
     layout: "/auth",
   },
-  // {
-  //   path: "",
-  //   name: "",
-  //   icon: "",
-  //   component: Coin,
-  //   layout: "/admin",
-  // },
+  // email
   // {
   //   path: "/user-profile",
   //   name: "",
