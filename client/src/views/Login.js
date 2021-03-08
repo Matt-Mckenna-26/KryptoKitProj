@@ -11,7 +11,8 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React, {useState} from "react";
+import { useHistory } from 'react-router';
 
 // reactstrap components
 import {
@@ -28,12 +29,37 @@ import {
   Row,
   Col,
 } from "reactstrap";
+import { Link } from "react-router-dom";
+
+async function loginUser(credentials) {
+ return fetch('http://localhost/api/login', {
+   method: 'POST',
+   headers: {
+     'Content-Type': 'application/json'
+   },
+   body: JSON.stringify(credentials)
+ })
+   .then(data => data.json())
+}
 
 const Login = () => {
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [token, setToken] = useState();
+  const history = useHistory();
+  
+  const handleSubmit = () => {
+    const token = loginUser({
+      email,
+      password
+    });
+    setToken(token);
+    history.push("/:email");
+  }
 
   const handleAlert = (e) => {
     e.preventDefault();
-    alert("Sign in option coming soon!");
+    alert("Function coming soon!");
   }
 
   return (
@@ -48,7 +74,6 @@ const Login = () => {
               <Button
                 className="btn-neutral btn-icon"
                 color="default"
-                href="#pablo"
                 onClick={ handleAlert }
               >
                 <span className="btn-inner--icon">
@@ -65,7 +90,6 @@ const Login = () => {
               <Button
                 className="btn-neutral btn-icon"
                 color="default"
-                href="#pablo"
                 onClick={ handleAlert }
               >
                 <span className="btn-inner--icon">
@@ -94,9 +118,12 @@ const Login = () => {
                     </InputGroupText>
                   </InputGroupAddon>
                   <Input
-                    placeholder="Email"
+                    label="Email Address"
+                    margin="normal"
+                    name="email"
                     type="email"
-                    autoComplete="new-email"
+                    autoComplete="new-email" 
+                    required
                   />
                 </InputGroup>
               </FormGroup>
@@ -108,9 +135,11 @@ const Login = () => {
                     </InputGroupText>
                   </InputGroupAddon>
                   <Input
-                    placeholder="Password"
+                    label="Password" 
                     type="password"
-                    autoComplete="new-password"
+                    margin="normal"
+                    autoComplete="new-password" 
+                    required
                   />
                 </InputGroup>
               </FormGroup>
@@ -128,7 +157,7 @@ const Login = () => {
                 </label>
               </div>
               <div className="text-center">
-                <Button className="my-4" color="primary" type="button">
+                <Button className="my-4" color="primary" type="button" onClick={handleSubmit}> {/*() => history.push('/') */}
                   Sign in
                 </Button>
               </div>
@@ -137,22 +166,19 @@ const Login = () => {
         </Card>
         <Row className="mt-3">
           <Col xs="6">
-            <a
+            <Link to="./login"
               className="text-light"
-              href="#pablo"
-              onClick={(e) => e.preventDefault()}
+              onClick={ handleAlert }
             >
               <small>Forgot password?</small>
-            </a>
+            </Link>
           </Col>
           <Col className="text-right" xs="6">
-            <a
+            <Link to="./register"
               className="text-light"
-              href="#pablo"
-              onClick={(e) => e.preventDefault()}
             >
               <small>Create new account</small>
-            </a>
+            </Link>
           </Col>
         </Row>
       </Col>

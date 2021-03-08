@@ -11,7 +11,8 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React, { useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
+import axios from 'axios';
 // reactstrap components
 import {
   Card,
@@ -19,13 +20,29 @@ import {
   CardBody,
   Container,
   Row,
-  Col,
+  Spinner,
+  Pagination,
+  PaginationItem,
+  PaginationLink,
 } from "reactstrap";
 // core components
 import Header from "components/Headers/Header.js";
+import Coin from '../components/Coin';
 
-const Marketcap = () => {
-  const [copiedText, setCopiedText] = useState();
+function Marketcap()  {
+  const [coins, setCoins] = useState([]);
+  const pageRef = useRef(1);
+
+  const getApi = async () => {
+    const result = await axios.get(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=5&page=${pageRef.current}&sparkline=true`);
+    setCoins(result.data);
+  }
+
+  useEffect(() => {
+    const interval = setInterval( () => getApi(), 1000 );
+    return () => clearInterval(interval);
+  },[pageRef])
+
   return (
     <>
       <Header />
@@ -39,7 +56,25 @@ const Marketcap = () => {
                 <h3 className="mb-0">Marketcap</h3>
               </CardHeader>
               <CardBody>
-
+                {
+                  coins[0] === undefined ? (
+                    <Spinner color="primary" />
+                  ) : (
+                    <div>
+                      <Coin coins={coins} />
+                      <Pagination size="lg" aria-label="Page navigation">
+                        <PaginationItem style={{ marginLeft:"40%", width:"50%", marginTop: ".5em" }}>
+                          <PaginationLink previous onClick={() => {pageRef.current === 1 ? pageRef.current = 1 : pageRef.current -= 1}}>
+                          </PaginationLink>
+                        </PaginationItem>
+                        <PaginationItem style={{ marginRight:"30%", width:"50%", marginTop: ".5em" }}>
+                          <PaginationLink next onClick={() => pageRef.current += 1}>
+                          </PaginationLink>
+                        </PaginationItem>
+                      </Pagination>                        
+                    </div>
+                  )
+                }
               </CardBody>
               </Card>
           </div>
@@ -47,6 +82,6 @@ const Marketcap = () => {
       </Container>
     </>
   );
-};
+}
 
 export default Marketcap;
