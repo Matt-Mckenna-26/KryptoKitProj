@@ -41,7 +41,7 @@ const Profile = () => {
               <Row className="justify-content-center">
                 <Col className="order-lg-2" lg="3">
                   <div className="card-profile-image">
-                    <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                    <a href="#" onClick={(e) => e.preventDefault()}>
                       <img
                         alt="..."
                         className="rounded-circle"
@@ -59,7 +59,7 @@ const Profile = () => {
                   <Button
                     className="mr-4"
                     color="info"
-                    href="#pablo"
+                    href="#"
                     onClick={(e) => e.preventDefault()}
                     size="sm"
                   >
@@ -68,7 +68,7 @@ const Profile = () => {
                   <Button
                     className="float-right"
                     color="default"
-                    href="#pablo"
+                    href="#"
                     onClick={(e) => e.preventDefault()}
                     size="sm"
                   >
@@ -118,7 +118,7 @@ const Profile = () => {
                     Nick Murphy — writes, performs and records all of his own
                     music.
                   </p>
-                  <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                  <a href="#" onClick={(e) => e.preventDefault()}>
                     Show more
                   </a>
                 </div>
@@ -135,7 +135,7 @@ const Profile = () => {
                   <Col className="text-right" xs="4">
                     <Button
                       color="primary"
-                      href="#pablo"
+                      href="#"
                       onClick={(e) => e.preventDefault()}
                       size="sm"
                     >

@@ -11,7 +11,8 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React, {useState} from "react";
+import { useHistory } from 'react-router';
 
 // reactstrap components
 import {
@@ -30,6 +31,15 @@ import {
 } from "reactstrap";
 
 const Register = () => {
+  const [name, setName] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const history = useHistory();
+
+  const handleRegister = () => {
+    alert("You are now registered!\nPlease login.")
+    history.push("/auth/login");
+  }
 
   const handleAlert = (e) => {
     e.preventDefault();
@@ -91,7 +101,14 @@ const Register = () => {
                       <i className="ni ni-hat-3" />
                     </InputGroupText>
                   </InputGroupAddon>
-                  <Input placeholder="Name" type="text" />
+                  <Input 
+                    placeholder="Name"
+                    label="Name" 
+                    type="text"
+                    margin="normal"
+                    autoComplete="new-name" 
+                    required
+                  />
                 </InputGroup>
               </FormGroup>
               <FormGroup>
@@ -102,9 +119,13 @@ const Register = () => {
                     </InputGroupText>
                   </InputGroupAddon>
                   <Input
+                    label="Email Address"
                     placeholder="Email"
+                    margin="normal"
+                    name="email"
                     type="email"
-                    autoComplete="new-email"
+                    autoComplete="new-email" 
+                    required
                   />
                 </InputGroup>
               </FormGroup>
@@ -117,8 +138,11 @@ const Register = () => {
                   </InputGroupAddon>
                   <Input
                     placeholder="Password"
+                    label="Password" 
                     type="password"
-                    autoComplete="new-password"
+                    margin="normal"
+                    autoComplete="new-password" 
+                    required
                   />
                 </InputGroup>
               </FormGroup>
@@ -142,7 +166,7 @@ const Register = () => {
                     >
                       <span className="text-muted">
                         I agree with the{" "}
-                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                        <a href="#" onClick={(e) => e.preventDefault()}>
                           Privacy Policy
                         </a>
                       </span>
@@ -151,7 +175,7 @@ const Register = () => {
                 </Col>
               </Row>
               <div className="text-center">
-                <Button className="mt-1" color="primary" type="button">
+                <Button className="mt-1" color="primary" type="button" onClick={handleRegister}>
                   Create account
                 </Button>
               </div>
