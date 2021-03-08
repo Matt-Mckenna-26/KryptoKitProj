@@ -95,22 +95,17 @@ const BuySellForm = (props) => {
             <div style={{ height:"420px",overflowY:"scroll"}}>
             {
             allCrypto.map((list, index) => (
-                <Card className="singleCoin shadow-sm" style={{ display:"inline-grid", width: "12em", margin:".5em" }} key={index}>
-                    <CardHeader className="bg-transparent text-center">
+                <Card className="singleCoin shadow-sm" style={{ display:"inline-grid", width: "12em", minHeight:"250px", margin:".5em" }} key={index}>
+                    <CardHeader style={{maxHeight:"100px"}} className="bg-transparent text-center">
                         <img src={list.image.small} />
                     </CardHeader>
                     <CardBody className="text-center">
                     <h4 for="list.name">{list.name}</h4>
-<<<<<<< HEAD
-                        <p style={{fontSize:"12px", margin:"5px 0px"}}>Current Price: ${(list.market_data.current_price.usd).toLocaleString(undefined, {minimumFractionDigits:2})}</p>
-                        <input
-                            type="radio" 
-=======
-                        <p style={{fontSize:"15px", margin:"5px 0px"}}>Current Price: ${(list.market_data.current_price.usd).toLocaleString(undefined, {minimumFractionDigits:2})}</p>
+                        <p style={{fontSize:"15px", margin:"5px 0px"}}>Current Price:</p>
+                        <p style={{fontSize:"15px"}}>${(list.market_data.current_price.usd).toLocaleString(undefined, {minimumFractionDigits:2})}</p>
                         <input
                             type="radio" 
                             onClick={(e) => setSelectedCoin(list)}
->>>>>>> af1415ddb91ac26b9afe107639ced9e9fc79ac23
                             id={list.name}
                             name="coinSelect"
                             value={list.name}

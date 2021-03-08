@@ -96,13 +96,14 @@ const SellForm = () => {
             {
                 //instead of mapping through all coins it will only map through the coins currently in the users portfolio
             allCrypto.map((list, index) => (
-                <Card className="singleCoin shadow-sm" style={{ display:"inline-grid", width: "12em", margin:".5em" }} key={index}>
-                    <CardHeader className="bg-transparent text-center">
+                <Card className="singleCoin shadow-sm" style={{ display:"inline-grid", width: "12em", minHeight:"250px", margin:".5em" }} key={index}>
+                    <CardHeader  style={{maxHeight:"100px"}} className="bg-transparent text-center">
                         <img src={list.image.small} />
                     </CardHeader>
                     <CardBody className="text-center">
                     <h4 for="list.name">{list.name}</h4>
-                        <p style={{fontSize:"15px", margin:"5px 0px"}}>Current Price: ${(list.market_data.current_price.usd).toLocaleString(undefined, {minimumFractionDigits:2})}</p>
+                    <p style={{fontSize:"15px", margin:"5px 0px"}}>Current Price:</p>
+                    <p style={{fontSize:"15px"}}>${(list.market_data.current_price.usd).toLocaleString(undefined, {minimumFractionDigits:2})}</p>
                         <input
                             type="radio" 
                             onClick={(e) => setSelectedCoin(list)}
