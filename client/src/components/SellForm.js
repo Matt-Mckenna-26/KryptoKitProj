@@ -1,6 +1,5 @@
 import React, {useContext, useState, useEffect } from 'react';
 import { navigate, Link } from '@reach/router';
-import { GlobalContext } from './ContextProvider';
 import {
   Card,
   CardHeader,
@@ -18,7 +17,7 @@ import {
 
 import axios from 'axios';
 
-const BuySellForm = (props) => {
+const SellForm = () => {
     const [ userDollarsSpent, setUserDollarsSpent ] = useState("");
     const [ allCrypto, setAllCrypto ] = useState([]);
     const [ errs, setErrs ] = useState({});
@@ -61,7 +60,7 @@ const BuySellForm = (props) => {
                 disabled={true}
                 type="text"
                 defaultValue ='Select a coin below to purchase'
-                value = {selectedCoin !== undefined ? selectedCoin.name : 'Select a coin below to purchase'}
+                value = {selectedCoin !== undefined ? selectedCoin.name : 'Select a coin below to sell'}
                 />
             </InputGroup>
             <InputGroup className="input-group-alternative center" style={{width:"400px", margin:".5em 0 1em 0"}}>
@@ -75,10 +74,11 @@ const BuySellForm = (props) => {
                 placeholder="USD Currency (min $100)"
                 type="text"
                 autoComplete="new-amount"
+                
                 onChange={ (e) => setUserDollarsSpent(e.target.value)}
                 />
                 <Button className="ni ni-check-bold" color="primary" type="submit">
-                Buy Coin
+                Sell Coin
                 </Button>
             </InputGroup>
             <InputGroup className="input-group-alternative center" style={{width:"400px", margin:".5em 0 1em 0"}}>
@@ -94,6 +94,7 @@ const BuySellForm = (props) => {
             </InputGroup>
             <div style={{ height:"420px",overflowY:"scroll"}}>
             {
+                //instead of mapping through all coins it will only map through the coins currently in the users portfolio
             allCrypto.map((list, index) => (
                 <Card className="singleCoin shadow-sm" style={{ display:"inline-grid", width: "12em", margin:".5em" }} key={index}>
                     <CardHeader className="bg-transparent text-center">
@@ -101,16 +102,10 @@ const BuySellForm = (props) => {
                     </CardHeader>
                     <CardBody className="text-center">
                     <h4 for="list.name">{list.name}</h4>
-<<<<<<< HEAD
-                        <p style={{fontSize:"12px", margin:"5px 0px"}}>Current Price: ${(list.market_data.current_price.usd).toLocaleString(undefined, {minimumFractionDigits:2})}</p>
-                        <input
-                            type="radio" 
-=======
                         <p style={{fontSize:"15px", margin:"5px 0px"}}>Current Price: ${(list.market_data.current_price.usd).toLocaleString(undefined, {minimumFractionDigits:2})}</p>
                         <input
                             type="radio" 
                             onClick={(e) => setSelectedCoin(list)}
->>>>>>> af1415ddb91ac26b9afe107639ced9e9fc79ac23
                             id={list.name}
                             name="coinSelect"
                             value={list.name}
@@ -128,4 +123,4 @@ const BuySellForm = (props) => {
     )
 }
 
-export default BuySellForm;
+export default SellForm;
