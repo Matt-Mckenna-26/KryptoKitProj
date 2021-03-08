@@ -33,10 +33,10 @@ const Header = () => {
                           tag="h5"
                           className="text-uppercase text-muted mb-0"
                         >
-                          Wallet
+                          Dollar Balance
                         </CardTitle>
                         <span className="h2 font-weight-bold mb-0">
-                          66,897
+                          $66,897
                         </span>
                       </div>
                       <Col className="col-auto">
@@ -63,9 +63,9 @@ const Header = () => {
                           tag="h5"
                           className="text-uppercase text-muted mb-0"
                         >
-                          Buys
+                          Coin Balance
                         </CardTitle>
-                        <span className="h2 font-weight-bold mb-0">51</span>
+                        <span className="h2 font-weight-bold mb-0">$51.00</span>
                       </div>
                       <Col className="col-auto">
                         <div className="icon icon-shape bg-warning text-white rounded-circle shadow">
@@ -91,13 +91,13 @@ const Header = () => {
                           tag="h5"
                           className="text-uppercase text-muted mb-0"
                         >
-                          Sells
+                          Account % Change
                         </CardTitle>
-                        <span className="h2 font-weight-bold mb-0">24</span>
+                        <span className="h2 font-weight-bold mb-0">24%</span>
                       </div>
                       <Col className="col-auto">
-                        <div className="icon icon-shape bg-yellow text-white rounded-circle shadow">
-                          <i className="fas fa-users" />
+                        <div className="icon icon-shape bg-info text-white rounded-circle shadow">
+                          <i className="fas fa-percent" />
                         </div>
                       </Col>
                     </Row>
@@ -119,13 +119,13 @@ const Header = () => {
                           tag="h5"
                           className="text-uppercase text-muted mb-0"
                         >
-                          Stats
+                          Unique Cryptos Owned
                         </CardTitle>
-                        <span className="h2 font-weight-bold mb-0">65%</span>
+                        <span className="h2 font-weight-bold mb-0">3</span>
                       </div>
                       <Col className="col-auto">
-                        <div className="icon icon-shape bg-info text-white rounded-circle shadow">
-                          <i className="fas fa-percent" />
+                        <div className="icon icon-shape bg-yellow text-white rounded-circle shadow">
+                          <i className="fas fa-users" />
                         </div>
                       </Col>
                     </Row>
