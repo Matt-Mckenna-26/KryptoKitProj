@@ -20,9 +20,6 @@ const BuySellForm = (props) => {
     const [ userDollarsSpent, setUserDollarsSpent ] = useState("");
     const [ allCrypto, setAllCrypto ] = useState([]);
     const [ errs, setErrs ] = useState({});
-    const {loggedUser, focusCoin} = useContext(GlobalContext)
-    const [loggedInUser, setLoggedInUser] = loggedUser;
-    const [focusedCoin, setFocusedCoin] = focusCoin;
     
     useEffect(() => {
         axios
