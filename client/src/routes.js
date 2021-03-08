@@ -20,6 +20,7 @@ import Customers from "views/Customers.js";
 import Wallet from "views/Wallet.js";
 import Trade from "views/Trade.js";
 import Buysell from "views/BuySell.js";
+import SellView from "views/SellView.js"
 import Marketcap from "views/Marketcap.js";
 import Coin from "views/Coin";
 
@@ -38,18 +39,25 @@ var routes = [
     component: Marketcap,
     layout: "/admin",
   },
+  // {
+  //   path: "/trade",
+  //   name: "Trading",
+  //   icon: "ni ni-chart-bar-32 text-orange",
+  //   component: Trade,
+  //   layout: "/admin",
+  // },
   {
-    path: "/trade",
-    name: "Trading",
-    icon: "ni ni-chart-bar-32 text-orange",
-    component: Trade,
+    path: "/buy",
+    name: "Buy",
+    icon: "ni ni-money-coins text-green",
+    component: Buysell,
     layout: "/admin",
   },
   {
-    path: "/buysell",
-    name: "Buy and Sell",
+    path: "/sell",
+    name: "Sell",
     icon: "ni ni-money-coins text-green",
-    component: Buysell,
+    component: SellView,
     layout: "/admin",
   },
   {
