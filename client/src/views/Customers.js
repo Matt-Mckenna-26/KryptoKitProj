@@ -61,7 +61,7 @@ const Customers = () => {
                       <Media className="align-items-center">
                         <a
                           className="avatar mr-3"
-                          href="#pablo"
+                          href="#"
                           onClick={(e) => e.preventDefault()}
                         >
                           <img
@@ -91,7 +91,7 @@ const Customers = () => {
                       <div className="avatar-group">
                         <a
                           className="avatar avatar-sm"
-                          href="#pablo"
+                          href="#"
                           id="tooltip731399078"
                           onClick={(e) => e.preventDefault()}
                         >
@@ -112,7 +112,7 @@ const Customers = () => {
                         </UncontrolledTooltip>
                         <a
                           className="avatar avatar-sm"
-                          href="#pablo"
+                          href="#"
                           id="tooltip491083084"
                           onClick={(e) => e.preventDefault()}
                         >
@@ -133,7 +133,7 @@ const Customers = () => {
                         </UncontrolledTooltip>
                         <a
                           className="avatar avatar-sm"
-                          href="#pablo"
+                          href="#"
                           id="tooltip528540780"
                           onClick={(e) => e.preventDefault()}
                         >
@@ -154,7 +154,7 @@ const Customers = () => {
                         </UncontrolledTooltip>
                         <a
                           className="avatar avatar-sm"
-                          href="#pablo"
+                          href="#"
                           id="tooltip237898869"
                           onClick={(e) => e.preventDefault()}
                         >
@@ -175,7 +175,7 @@ const Customers = () => {
                         </UncontrolledTooltip>
                         <a
                           className="avatar avatar-sm"
-                          href="#pablo"
+                          href="#"
                           id="tooltip951447946"
                           onClick={(e) => e.preventDefault()}
                         >
@@ -202,7 +202,7 @@ const Customers = () => {
                       <Media className="align-items-center">
                         <a
                           className="avatar rounded-circle mr-3"
-                          href="#pablo"
+                          href="#"
                           onClick={(e) => e.preventDefault()}
                         >
                           <img
@@ -231,7 +231,7 @@ const Customers = () => {
                       <div className="avatar-group">
                         <a
                           className="avatar avatar-sm"
-                          href="#pablo"
+                          href="#"
                           id="tooltip188614932"
                           onClick={(e) => e.preventDefault()}
                         >
@@ -252,7 +252,7 @@ const Customers = () => {
                         </UncontrolledTooltip>
                         <a
                           className="avatar avatar-sm"
-                          href="#pablo"
+                          href="#"
                           id="tooltip66535734"
                           onClick={(e) => e.preventDefault()}
                         >
@@ -270,7 +270,7 @@ const Customers = () => {
                         </UncontrolledTooltip>
                         <a
                           className="avatar avatar-sm"
-                          href="#pablo"
+                          href="#"
                           id="tooltip427561578"
                           onClick={(e) => e.preventDefault()}
                         >
@@ -291,7 +291,7 @@ const Customers = () => {
                         </UncontrolledTooltip>
                         <a
                           className="avatar avatar-sm"
-                          href="#pablo"
+                          href="#"
                           id="tooltip904098289"
                           onClick={(e) => e.preventDefault()}
                         >
@@ -312,7 +312,7 @@ const Customers = () => {
                         </UncontrolledTooltip>
                         <a
                           className="avatar avatar-sm"
-                          href="#pablo"
+                          href="#"
                           id="tooltip951447946"
                           onClick={(e) => e.preventDefault()}
                         >
@@ -339,7 +339,7 @@ const Customers = () => {
                       <Media className="align-items-center">
                         <a
                           className="avatar rounded-circle mr-3"
-                          href="#pablo"
+                          href="#"
                           onClick={(e) => e.preventDefault()}
                         >
                           <img
@@ -366,7 +366,7 @@ const Customers = () => {
                       <div className="avatar-group">
                         <a
                           className="avatar avatar-sm"
-                          href="#pablo"
+                          href="#"
                           id="tooltip707904950"
                           onClick={(e) => e.preventDefault()}
                         >
@@ -387,7 +387,7 @@ const Customers = () => {
                         </UncontrolledTooltip>
                         <a
                           className="avatar avatar-sm"
-                          href="#pablo"
+                          href="#"
                           id="tooltip353988222"
                           onClick={(e) => e.preventDefault()}
                         >
@@ -408,7 +408,7 @@ const Customers = () => {
                         </UncontrolledTooltip>
                         <a
                           className="avatar avatar-sm"
-                          href="#pablo"
+                          href="#"
                           id="tooltip467171202"
                           onClick={(e) => e.preventDefault()}
                         >
@@ -429,7 +429,7 @@ const Customers = () => {
                         </UncontrolledTooltip>
                         <a
                           className="avatar avatar-sm"
-                          href="#pablo"
+                          href="#"
                           id="tooltip362118155"
                           onClick={(e) => e.preventDefault()}
                         >
@@ -450,7 +450,7 @@ const Customers = () => {
                         </UncontrolledTooltip>
                         <a
                           className="avatar avatar-sm"
-                          href="#pablo"
+                          href="#"
                           id="tooltip951447946"
                           onClick={(e) => e.preventDefault()}
                         >
@@ -477,7 +477,7 @@ const Customers = () => {
                       <Media className="align-items-center">
                         <a
                           className="avatar rounded-circle mr-3"
-                          href="#pablo"
+                          href="#"
                           onClick={(e) => e.preventDefault()}
                         >
                           <img
@@ -506,7 +506,7 @@ const Customers = () => {
                       <div className="avatar-group">
                         <a
                           className="avatar avatar-sm"
-                          href="#pablo"
+                          href="#"
                           id="tooltip226319315"
                           onClick={(e) => e.preventDefault()}
                         >
@@ -527,7 +527,7 @@ const Customers = () => {
                         </UncontrolledTooltip>
                         <a
                           className="avatar avatar-sm"
-                          href="#pablo"
+                          href="#"
                           id="tooltip711961370"
                           onClick={(e) => e.preventDefault()}
                         >
@@ -548,7 +548,7 @@ const Customers = () => {
                         </UncontrolledTooltip>
                         <a
                           className="avatar avatar-sm"
-                          href="#pablo"
+                          href="#"
                           id="tooltip216246707"
                           onClick={(e) => e.preventDefault()}
                         >
@@ -569,7 +569,7 @@ const Customers = () => {
                         </UncontrolledTooltip>
                         <a
                           className="avatar avatar-sm"
-                          href="#pablo"
+                          href="#"
                           id="tooltip638048561"
                           onClick={(e) => e.preventDefault()}
                         >
@@ -590,7 +590,7 @@ const Customers = () => {
                         </UncontrolledTooltip>
                         <a
                           className="avatar avatar-sm"
-                          href="#pablo"
+                          href="#"
                           id="tooltip951447946"
                           onClick={(e) => e.preventDefault()}
                         >
@@ -617,7 +617,7 @@ const Customers = () => {
                       <Media className="align-items-center">
                         <a
                           className="avatar rounded-circle mr-3"
-                          href="#pablo"
+                          href="#"
                           onClick={(e) => e.preventDefault()}
                         >
                           <img
@@ -645,7 +645,7 @@ const Customers = () => {
                       <div className="avatar-group">
                         <a
                           className="avatar avatar-sm"
-                          href="#pablo"
+                          href="#"
                           id="tooltip781594051"
                           onClick={(e) => e.preventDefault()}
                         >
@@ -666,7 +666,7 @@ const Customers = () => {
                         </UncontrolledTooltip>
                         <a
                           className="avatar avatar-sm"
-                          href="#pablo"
+                          href="#"
                           id="tooltip840372212"
                           onClick={(e) => e.preventDefault()}
                         >
@@ -687,7 +687,7 @@ const Customers = () => {
                         </UncontrolledTooltip>
                         <a
                           className="avatar avatar-sm"
-                          href="#pablo"
+                          href="#"
                           id="tooltip497647175"
                           onClick={(e) => e.preventDefault()}
                         >
@@ -708,7 +708,7 @@ const Customers = () => {
                         </UncontrolledTooltip>
                         <a
                           className="avatar avatar-sm"
-                          href="#pablo"
+                          href="#"
                           id="tooltip951447946"
                           onClick={(e) => e.preventDefault()}
                         >
@@ -729,7 +729,7 @@ const Customers = () => {
                         </UncontrolledTooltip>
                         <a
                           className="avatar avatar-sm"
-                          href="#pablo"
+                          href="#"
                           id="tooltip951447946"
                           onClick={(e) => e.preventDefault()}
                         >
@@ -761,7 +761,7 @@ const Customers = () => {
                   >
                     <PaginationItem className="disabled">
                       <PaginationLink
-                        href="#pablo"
+                        href="#"
                         onClick={(e) => e.preventDefault()}
                         tabIndex="-1"
                       >
@@ -771,7 +771,7 @@ const Customers = () => {
                     </PaginationItem>
                     <PaginationItem className="active">
                       <PaginationLink
-                        href="#pablo"
+                        href="#"
                         onClick={(e) => e.preventDefault()}
                       >
                         1
@@ -779,7 +779,7 @@ const Customers = () => {
                     </PaginationItem>
                     <PaginationItem>
                       <PaginationLink
-                        href="#pablo"
+                        href="#"
                         onClick={(e) => e.preventDefault()}
                       >
                         2 <span className="sr-only">(current)</span>
@@ -787,7 +787,7 @@ const Customers = () => {
                     </PaginationItem>
                     <PaginationItem>
                       <PaginationLink
-                        href="#pablo"
+                        href="#"
                         onClick={(e) => e.preventDefault()}
                       >
                         3
@@ -795,7 +795,7 @@ const Customers = () => {
                     </PaginationItem>
                     <PaginationItem>
                       <PaginationLink
-                        href="#pablo"
+                        href="#"
                         onClick={(e) => e.preventDefault()}
                       >
                         <i className="fas fa-angle-right" />

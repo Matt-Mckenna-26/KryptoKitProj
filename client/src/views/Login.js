@@ -32,7 +32,7 @@ import {
 import { Link } from "react-router-dom";
 
 async function loginUser(credentials) {
- return fetch('http://localhost/api/login', {
+ return fetch('http://localhost:8000/api/login', {
    method: 'POST',
    headers: {
      'Content-Type': 'application/json'
@@ -54,7 +54,7 @@ const Login = () => {
       password
     });
     setToken(token);
-    history.push("/:email");
+    history.push("/");
   }
 
   const handleAlert = (e) => {

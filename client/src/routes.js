@@ -18,11 +18,11 @@ import Register from "views/Register.js";
 import Login from "views/Login.js";
 import Customers from "views/Customers.js";
 import Wallet from "views/Wallet.js";
-import Trade from "views/Trade.js";
+//import Trade from "views/Trade.js";
 import Buysell from "views/BuySell.js";
 import SellView from "views/SellView.js"
 import Marketcap from "views/Marketcap.js";
-import Coin from "views/Coin";
+//import Coin from "views/Coin";
 
 var routes = [
   {
@@ -39,6 +39,13 @@ var routes = [
     component: Wallet,
     layout: "/admin",
   },
+  // {
+  //   path: "/trade",
+  //   name: "Trading",
+  //   icon: "ni ni-chart-bar-32 text-orange",
+  //   component: Trade,
+  //   layout: "/admin",
+  // },
   {
     path: "/buy",
     name: "Buy",
@@ -53,6 +60,11 @@ var routes = [
     component: SellView,
     layout: "/admin",
   },
+  // {
+  //   path: "/icons",
+  //   name: "My Wallet",
+  //   icon: "ni ni-credit-card text-grey",
+  //   component: Wallet,
   {
     path: "/marketcap",
     name: "Marketcap",

@@ -80,7 +80,7 @@ const Index = (props) => {
                           className={classnames("py-2 px-3", {
                             active: activeNav === 1,
                           })}
-                          href="#pablo"
+                          href="#"
                           onClick={(e) => toggleNavs(e, 1)}
                         >
                           <span className="d-none d-md-block">Month</span>
@@ -93,7 +93,7 @@ const Index = (props) => {
                             active: activeNav === 2,
                           })}
                           data-toggle="tab"
-                          href="#pablo"
+                          href="#"
                           onClick={(e) => toggleNavs(e, 2)}
                         >
                           <span className="d-none d-md-block">Week</span>
