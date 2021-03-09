@@ -14,7 +14,7 @@ import { UserContext } from "context/UserContext";
 import RedirectToLogin from "components/RedirectToLogin";
 
 const BuySell = () => {
-  const {loggedUser} = useContext(UserContext)
+  const {loggedUser, setLoggedUser} = useContext(UserContext)
   return (
     loggedUser.username !== undefined ?
     (<>
@@ -29,7 +29,7 @@ const BuySell = () => {
                 <h3 className="mb-0">Buy Cryptocurrency</h3>
               </CardHeader>
               <CardBody>
-                <Buysell />
+                <Buysell loggedUser = {loggedUser} setLoggedUser={setLoggedUser}/>
               </CardBody>
             </Card>
           </div>
