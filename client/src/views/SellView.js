@@ -14,7 +14,7 @@ import { UserContext } from "context/UserContext";
 import RedirectToLogin from "components/RedirectToLogin";
 
 const SellView = () => {
-  const {loggedUser} = useContext(UserContext)
+  const {loggedUser, setLoggedUser} = useContext(UserContext)
 
   return (
     loggedUser.username !== undefined ? 
@@ -30,7 +30,7 @@ const SellView = () => {
                 <h3 className="mb-0">Sell Cryptocurrency ( below options will map through user portfolio instead of all coins)</h3>
               </CardHeader>
               <CardBody>
-                <SellForm />
+                <SellForm loggedUser={loggedUser} setLoggedUser={setLoggedUser}/>
               </CardBody>
             </Card>
           </div>

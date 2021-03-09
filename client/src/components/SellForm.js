@@ -18,21 +18,11 @@ import {
 import axios from 'axios';
 import { UserContext } from 'context/UserContext';
 
-const SellForm = () => {
+const SellForm = ({loggedUser, setLoggedUser}) => {
     const [ userDollarsSpent, setUserDollarsSpent ] = useState("");
-    const [ allCrypto, setAllCrypto ] = useState([]);
     const [ errs, setErrs ] = useState({});
     const [selectedCoin, setSelectedCoin] = useState(undefined);
-    const {loggedUser, setLoggedUser} = useContext(UserContext);
     
-    useEffect(() => {
-        axios
-            .get("https://api.coingecko.com/api/v3/coins")
-            .then((res) =>{setAllCrypto(res.data)
-            })
-            .catch((err) => console.log(err));
-    }, []);
-
     const submitForm = (e) => {
         e.preventDefault();
         axios
@@ -52,6 +42,24 @@ const SellForm = () => {
         })
         .catch((err) => console.log(err));  
     }
+    
+    // const getCoinsCurrentValue = () => {
+    //     loggedUser.coinsPortfolio.map((coin,idx) => {
+    //         queryParam += `${coin.coinName.replace(/\s+/g, '')}%2C`
+    //     }) 
+    //             axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${queryParam}&vs_currencies=usd`,
+    //                 )
+    //                 .then(res => {
+    //                     currentCoinPrices = res.data
+    //                     console.log(currentCoinPrices)
+    //                         loggedUser.coinsPortfolio.map((coin, idx) => {
+    //                             let coinValue = coin.numberOfCoins * currentCoinPrices[`${coin.coinName.replace(/\s+/g, '')}`].usd
+    //                             //store totalCoin Value in state to pass in req.body 
+    //                             totalCoinValue += coinValue;
+    //                             console.log(totalCoinValue);
+    //                         })
+    //                 }
+
     return(
         <Container fluid>
         <Form role="form">
@@ -91,26 +99,30 @@ const SellForm = () => {
                 disabled={true}
                 type="text"
                 defaultValue = {0}
-                value = {selectedCoin !== undefined ? userDollarsSpent/selectedCoin.market_data.current_price.usd : 0}
+                // value = {selectedCoin !== undefined ? userDollarsSpent/selectedCoin.market_data.current_price.usd : 0}
                 />
             </InputGroup>
             <div style={{ height:"420px",overflowY:"scroll"}}>
             {
                 //instead of mapping through all coins it will only map through the coins currently in the users portfolio
-            allCrypto.map((list, index) => (
-                <Card className="singleCoin shadow-sm" style={{ display:"inline-grid", width: "12em", margin:".5em", minHeight:"250px" }} key={index}>
+            loggedUser.coinsPortfolio.map((coin, idx) => (
+                <Card className="singleCoin shadow-sm" style={{ display:"inline-grid", width: "12em", margin:".5em", minHeight:"250px" }} key={idx}>
                     <CardHeader className="bg-transparent text-center" style={{maxHeight:"100px"}}>
-                        <img src={list.image.small} />
+                        <h2>{coin.coinName}</h2>
                     </CardHeader>
                     <CardBody className="text-center">
-                    <h4 for="list.name">{list.name}</h4>
-                        <p style={{fontSize:"15px", margin:"5px 0px"}}>Current Price: ${(list.market_data.current_price.usd).toLocaleString(undefined, {minimumFractionDigits:2})}</p>
+                    <h4 for="list.name">{coin.coinName}</h4>
+                        {/* <p style={{fontSize:"15px", margin:"5px 0px"}}>Current Price: ${(list.market_data.current_price.usd).toLocaleString(undefined, {minimumFractionDigits:2})}</p> */}
+                        <ul className='list-unstyled'>
+                            <li>Average Cost: {coin.avgCost}</li>
+                            <li>Number of Coins Owned: {coin.numberOfCoins}</li>
+                        </ul>
                         <input
                             type="radio" 
-                            onClick={(e) => setSelectedCoin(list)}
-                            id={list.name}
+                            onClick={(e) => setSelectedCoin(coin)}
+                            id={coin.coinName}
                             name="coinSelect"
-                            value={list.name}
+                            value={coin.coinName}
                             className="form-check-input"
                             style={{ margin:"0.5em auto" }}
                         />

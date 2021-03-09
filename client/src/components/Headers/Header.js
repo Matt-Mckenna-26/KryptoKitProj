@@ -138,7 +138,7 @@ const Header = () => {
                         >
                           Account % Change
                         </CardTitle>
-                        <span className="h2 font-weight-bold mb-0">{(5000-(loggedUser.wallet[0].dollarBalance + loggedUser.wallet[0].coinBalance))/5000}%</span>
+                        <span className="h2 font-weight-bold mb-0">{Math.round(100*(5000-(loggedUser.wallet[0].dollarBalance + loggedUser.wallet[0].coinBalance))/5000)/100}%</span>
                       </div>
                       <Col className="col-auto">
                         <div className="icon icon-shape bg-info text-white rounded-circle shadow">
