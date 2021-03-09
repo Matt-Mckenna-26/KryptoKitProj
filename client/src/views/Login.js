@@ -11,7 +11,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import { useHistory } from 'react-router';
 import axios from 'axios';
 
@@ -32,6 +32,9 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import {navigate} from "@reach/router";
+import { UserContext } from "context/UserContext";
+// import { ContextProvider } from "../context/ContextProvider";
+// import { GlobalContext } from "../context/ContextProvider";
 
 async function loginUser(credentials) {
  return fetch('http://localhost:8000/api/login', {
@@ -44,12 +47,15 @@ async function loginUser(credentials) {
    .then(data => data.json())
 }
 
-const Login = () => {
+const Login = ({}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [token, setToken] = useState("");
   const history = useHistory();
-  
+  const {loggedUser, setLoggedUser} = useContext(UserContext)
+
+
+
   const handleSubmit = (e) => {
     const token = loginUser({
       email,
@@ -66,7 +72,14 @@ const Login = () => {
         )
         .then(res => {
             console.log(res);
-            navigate("/dashboard");
+            axios.get("http://localhost:8000/api/users/loggedin", {
+                    withCredentials: true
+                    })
+                    .then(res => {
+                        console.log(res);
+                        setLoggedUser(res.data);
+                    })
+                    .catch(err => console.log(err))
         })
         .catch(err => {
             console.log(err);
@@ -75,6 +88,7 @@ const Login = () => {
             window.location.reload(false);
         });
     history.push("/");
+    console.log(loggedUser)
   }
 
   const handleAlert = (e) => {

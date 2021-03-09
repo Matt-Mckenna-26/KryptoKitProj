@@ -14,6 +14,7 @@
 import React, {useState} from "react";
 import { useHistory } from 'react-router';
 import axios from 'axios';
+import {navigate} from '@reach/router'
 
 // reactstrap components
 import {
@@ -42,7 +43,12 @@ const Register = () => {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    const newUser = {username, email, password, confirmPassword}
+    const newUser = {username, email, password, confirmPassword,
+      wallet : {
+        dollarBalance : 5000,
+        coinBalance : 0
+      }
+      }
     axios
       .post("http://localhost:8000/api/register", newUser, {
         withCredentials: true
@@ -53,11 +59,11 @@ const Register = () => {
         setEmail("");
         setPassword("");
         setConfirmPassword("");
+        console.log(res.data);
     })
     .catch(err => {
         console.log(err);
     });
-    alert("You are now registered!\nPlease login.")
     history.push("/auth/login");
   };
 
@@ -194,23 +200,6 @@ const Register = () => {
                   />
                 </InputGroup>
                 </FormGroup>
-                <FormGroup>
-                <InputGroup className="input-group-alternative">
-                  <InputGroupAddon addonType="prepend">
-                    <InputGroupText>
-                      <i className="ni ni-lock-circle-open" />
-                    </InputGroupText>
-                  </InputGroupAddon>
-                  <Input
-                    placeholder="Confirm Password"
-                    label="Confirm Password" 
-                    type="confirmPassword"
-                    margin="normal"
-                    autoComplete="new-password" 
-                    required
-                  />
-                </InputGroup>
-              </FormGroup>
               {/* <div className="text-muted font-italic">
                 <small>
                   password strength:{" "}
