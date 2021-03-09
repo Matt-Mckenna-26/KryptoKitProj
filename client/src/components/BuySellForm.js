@@ -19,7 +19,7 @@ import axios from 'axios';
 import { UserContext } from 'context/UserContext';
 
 const BuySellForm = ({loggedUser, setLoggedUser}) => {
-    const [ userDollarsSpent, setUserDollarsSpent ] = useState("");
+    const [ thisTransactionDollars, setThisTransactionDollars ] = useState(Number);
     const [ allCrypto, setAllCrypto ] = useState([]);
     const [ errs, setErrs ] = useState({});
     const [selectedCoin, setSelectedCoin] = useState(undefined);
@@ -53,7 +53,7 @@ const BuySellForm = ({loggedUser, setLoggedUser}) => {
                             axios.put(`http://localhost:8000/api/updateUserWallet/${newUser._id}/${newUser.wallet[0]._id}`,
                             //store totalCoinValue in state to pass in req.body to update user coinBalance 
                                 {coinBalance : totalCoinValue,
-                                dollarBalance : loggedUser.wallet[0].dollarBalance - userDollarsSpent
+                                dollarBalance : loggedUser.wallet[0].dollarBalance - thisTransactionDollars
                                 }, {
                                     withCredentials: true
                                 })
@@ -72,8 +72,8 @@ const BuySellForm = ({loggedUser, setLoggedUser}) => {
         axios.put(`http://localhost:8000/api/firstBuy/${loggedUser._id}`,
                             {coinName: selectedCoin.id,
                             avgCost: selectedCoin.market_data.current_price.usd,
-                            userDollarsSpent: userDollarsSpent,
-                            numberOfCoins: userDollarsSpent/selectedCoin.market_data.current_price.usd
+                            userDollarsSpent: thisTransactionDollars,
+                            numberOfCoins: thisTransactionDollars/selectedCoin.market_data.current_price.usd
                             },{
                             withCredentials: true
                             })
@@ -83,6 +83,17 @@ const BuySellForm = ({loggedUser, setLoggedUser}) => {
                                 })
                                 .catch(err => console.log('Error Purchasing Coin', {err}))
     }
+
+    // const submitAddtlBuy = () => {
+    //         let currentCoinPrice = selectedCoin.market_data.current_price.usd 
+    //         let coinName = selectedCoin.id 
+    //             axios.put(`/api/buysell/${loggedUser._id}/${coinName}`,
+    //                     {userDollarsSpent: loggedUser.coinPortfolio[+userDollarsSpent,
+    //                     numberOfCoins: currentCoinPrice/(dollarsSpent + thisTransactionDollars),
+    //                     avgCost: numberOfCoins/(dollarsSpent + thisTransactionDollars) })
+    //                         .then(res => console.log(res))
+    //                         .catch(err => console.log(err))
+    //     }
 
     return(
         <Container fluid>
@@ -109,7 +120,7 @@ const BuySellForm = ({loggedUser, setLoggedUser}) => {
                 type="text"
                 autoComplete="new-amount"
                 
-                onChange={ (e) => setUserDollarsSpent(e.target.value)}
+                onChange={ (e) => setThisTransactionDollars(e.target.value)}
                 />
                 <Button className="ni ni-check-bold" color="primary" onClick = {(e) => submitFirstBuy()}>
                 Buy Coin
@@ -123,7 +134,7 @@ const BuySellForm = ({loggedUser, setLoggedUser}) => {
                 disabled={true}
                 type="text"
                 defaultValue = {0}
-                value = {selectedCoin !== undefined ? userDollarsSpent/selectedCoin.market_data.current_price.usd : 0}
+                value = {selectedCoin !== undefined ? thisTransactionDollars/selectedCoin.market_data.current_price.usd : 0}
                 />
             </InputGroup>
             <div style={{ height:"420px",overflowY:"scroll"}}>

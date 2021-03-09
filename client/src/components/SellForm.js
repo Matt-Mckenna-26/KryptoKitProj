@@ -16,12 +16,14 @@ import {
 } from "reactstrap";
 
 import axios from 'axios';
+import { UserContext } from 'context/UserContext';
 
 const SellForm = () => {
     const [ userDollarsSpent, setUserDollarsSpent ] = useState("");
     const [ allCrypto, setAllCrypto ] = useState([]);
     const [ errs, setErrs ] = useState({});
     const [selectedCoin, setSelectedCoin] = useState(undefined);
+    const {loggedUser, setLoggedUser} = useContext(UserContext);
     
     useEffect(() => {
         axios
