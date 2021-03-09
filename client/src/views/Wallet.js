@@ -7,6 +7,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 import React, { useState, useContext } from "react";
+import { Redirect } from "react-router-dom";
 import {GlobalContext} from './ContextProvider';
 // reactstrap components
 import {
@@ -136,7 +137,9 @@ const Wallet = () => {
           </div>
         </Row>
       </Container>
-    </>): <RedirectToLogin/>
+    </>): <Redirect from="/" to="/auth/login" />
+
+    // <RedirectToLogin/>
   );
 };
 

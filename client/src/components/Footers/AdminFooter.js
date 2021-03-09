@@ -59,7 +59,7 @@ const Footer = () => {
 
             <NavItem>
               <NavLink
-                href="https://github.com/Matt-Mckenna-26/KryptoKitProj/blob/master/LICENSE.md?ref=adr-admin-footer"
+                href="https://github.com/Matt-Mckenna-26/KryptoKitProj/blob/master/LICENSE?ref=adr-admin-footer"
                 rel="noopener noreferrer"
                 target="_blank"
               >

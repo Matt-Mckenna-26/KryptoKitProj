@@ -22,9 +22,28 @@ const RedirectToLogin = () => {
   const {loggedUser} = useContext(UserContext)
   
   return (
-    <div className="header bg-gradient-info pb-8 pt-5 pt-md-8">
+    <div className="header bg-gradient-info pb-8 pt-5 pt-md-8" style={{height:"850px", marginBottom:"-2em"}}>
         <Container fluid>
-            <h1 className='text-white'>Please Login Or Create an Account To Access the Full Features of KryptoKit!</h1>
+            <div className="header-body">
+            {/* Card stats */}
+            <Row>
+                <Col lg="12" xl="12" className="text-center">
+                <h1 className='text-white'>
+                Please Login Or Create an Account To Access the Full Features of KryptoKit!
+                </h1>
+                <img 
+                  alt="face" 
+                  width="500" 
+                  className="animated rollIn"
+                  style={{margin:"4rem auto", textAlign:"center"}}
+                  src={
+                    require("../assets/img/theme/lock-unlock.png")
+                      .default
+                  }
+                />
+                </Col>
+            </Row>
+            </div>
         </Container>
     </div>
     )

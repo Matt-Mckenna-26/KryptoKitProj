@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { Redirect } from "react-router-dom";
 // reactstrap components
 import {
   Card,
@@ -35,7 +36,9 @@ const BuySell = () => {
           </div>
         </Row>
       </Container>
-    </>) : <RedirectToLogin/>
+    </>) : <Redirect from="/" to="/auth/login" />
+
+    // <RedirectToLogin/>
   );
 };
 

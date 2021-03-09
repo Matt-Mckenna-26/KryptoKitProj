@@ -12,6 +12,7 @@
 
 */
 import React, { useState, useContext } from "react";
+import { Redirect } from "react-router-dom";
 // node.js library that concatenates classes (strings)
 import classnames from "classnames";
 // javascipt plugin for creating charts
@@ -246,7 +247,9 @@ const Index = (props) => {
           </Col>
         </Row>
       </Container>
-    </>): <RedirectToLogin/>
+    </>): <Redirect from="/" to="/auth/login" />
+
+    // <RedirectToLogin/>
   );
 };
 

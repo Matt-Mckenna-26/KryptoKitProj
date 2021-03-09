@@ -15,6 +15,7 @@ import { helpers } from "chart.js";
 import RedirectToLogin from "components/RedirectToLogin";
 import { UserContext } from "context/UserContext";
 import React, {useContext} from "react";
+import { Redirect } from "react-router-dom";
 
 // reactstrap components
 import { Card, CardBody, CardTitle, Container, Row, Col } from "reactstrap";
@@ -23,7 +24,7 @@ const Header = () => {
   const {loggedUser} = useContext(UserContext)
   return (
     <>
-    {loggedUser.username === undefined ? <RedirectToLogin/>  : 
+    {loggedUser.username === undefined ? <Redirect from="/" to="/auth/login" />  : 
       <div className="header bg-gradient-info pb-8 pt-5 pt-md-8">
         <Container fluid>
           <div className="header-body">

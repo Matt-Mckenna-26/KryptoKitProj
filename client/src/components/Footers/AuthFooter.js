@@ -55,7 +55,7 @@ const Login = () => {
                 </NavItem>
                 <NavItem>
                   <NavLink
-                    href="https://github.com/Matt-Mckenna-26/KryptoKitProj/blob/master/LICENSE.md?ref=adr-auth-footer"
+                    href="https://github.com/Matt-Mckenna-26/KryptoKitProj/blob/master/LICENSE?ref=adr-auth-footer"
                     target="_blank"
                   >
                     MIT License
