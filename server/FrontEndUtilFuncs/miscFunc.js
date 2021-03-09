@@ -58,7 +58,7 @@ const getTotalWalletCoinValue = (loggedInUser) => {
     let currentCoinPrices = {} 
     let queryParam = ''
     loggedInUser.coinsPortfolio.map((coin,idx) => {
-        queryParam += `${coin.name}%2C`
+        queryParam += `${coin.coinName.replace(/\s+/g, '')}%2C`
     }) 
             axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${queryParam}&vs_currencies=usd`,
                 )

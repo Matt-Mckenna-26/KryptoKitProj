@@ -54,43 +54,6 @@ const Login = ({}) => {
   const history = useHistory();
   const {loggedUser, setLoggedUser} = useContext(UserContext)
 
-  const getTotalWalletCoinValue = (newUser) => {
-    let totalCoinValue = 0 
-    let currentCoinPrices = {} 
-    let queryParam = ''
-    newUser.coinsPortfolio.map((coin,idx) => {
-        queryParam += `${coin.coinName.replace(/\s+/g, '')}%2C`
-    }) 
-            axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${queryParam}&vs_currencies=usd`,
-                )
-                .then(res => {
-                    currentCoinPrices = res.data
-                    console.log(currentCoinPrices)
-                        newUser.coinsPortfolio.map((coin, idx) => {
-                            let coinValue = coin.numberOfCoins * currentCoinPrices[`${coin.coinName.replace(/\s+/g, '')}`].usd
-                            //store totalCoin Value in state to pass in req.body 
-                            totalCoinValue += coinValue;
-                            console.log(totalCoinValue);
-                        })
-                        axios.put(`http://localhost:8000/api/updateUserWallet/${newUser._id}/${newUser.wallet[0]._id}`,
-                        //store totalCoinValue in state to pass in req.body to update user coinBalance 
-                            {coinBalance : totalCoinValue,
-                            dollarBalance : loggedUser.wallet[0].dollarBalance
-                            }, {
-                                withCredentials: true
-                            })
-                            .then(res =>{console.log(res)
-                                    setLoggedUser(res.data)
-                            })
-                            .catch(err => console.log(`error updating the user wallets coin value`, {err}))
-                    })
-                .catch(err =>{console.log(`error fetching up to date prices`, {err})
-                                console.log(queryParam)
-            })
-        }
-
-
-
   const handleSubmit = (e) => {
     const token = loginUser({
       email,
@@ -113,7 +76,6 @@ const Login = ({}) => {
                     .then(res => {
                         console.log(res);
                         setLoggedUser(res.data)
-                        getTotalWalletCoinValue(res.data);
                     })
                     .catch(err => console.log(err))
         })
