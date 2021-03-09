@@ -11,14 +11,19 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import { helpers } from "chart.js";
+import RedirectToLogin from "components/RedirectToLogin";
+import { UserContext } from "context/UserContext";
+import React, {useContext} from "react";
 
 // reactstrap components
 import { Card, CardBody, CardTitle, Container, Row, Col } from "reactstrap";
 
 const Header = () => {
+  const {loggedUser} = useContext(UserContext)
   return (
     <>
+    {loggedUser.username === undefined ? <RedirectToLogin/>  : 
       <div className="header bg-gradient-info pb-8 pt-5 pt-md-8">
         <Container fluid>
           <div className="header-body">
@@ -36,7 +41,7 @@ const Header = () => {
                           Dollar Balance
                         </CardTitle>
                         <span className="h2 font-weight-bold mb-0">
-                          $66,897
+                          ${loggedUser.wallet[0].dollarBalance}
                         </span>
                       </div>
                       <Col className="col-auto">
@@ -65,7 +70,7 @@ const Header = () => {
                         >
                           Coin Balance
                         </CardTitle>
-                        <span className="h2 font-weight-bold mb-0">$51.00</span>
+                        <span className="h2 font-weight-bold mb-0">${loggedUser.wallet[0].coinBalance}</span>
                       </div>
                       <Col className="col-auto">
                         <div className="icon icon-shape bg-warning text-white rounded-circle shadow">
@@ -93,7 +98,7 @@ const Header = () => {
                         >
                           Account % Change
                         </CardTitle>
-                        <span className="h2 font-weight-bold mb-0">24%</span>
+                        <span className="h2 font-weight-bold mb-0">{(5000-(loggedUser.wallet[0].dollarBalance + loggedUser.wallet[0].coinBalance))/5000}%</span>
                       </div>
                       <Col className="col-auto">
                         <div className="icon icon-shape bg-info text-white rounded-circle shadow">
@@ -121,7 +126,9 @@ const Header = () => {
                         >
                           Unique Cryptos Owned
                         </CardTitle>
-                        <span className="h2 font-weight-bold mb-0">3</span>
+                        <span className="h2 font-weight-bold mb-0">
+                          {/* {loggedUser.coinPortfolio.length} */}
+                        </span>
                       </div>
                       <Col className="col-auto">
                         <div className="icon icon-shape bg-yellow text-white rounded-circle shadow">
@@ -142,6 +149,7 @@ const Header = () => {
           </div>
         </Container>
       </div>
+}
     </>
   );
 };

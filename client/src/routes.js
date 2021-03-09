@@ -79,13 +79,13 @@ var routes = [
   //   component: Trade,
   //   layout: "/admin",
   // },
-  {
-    path: "/tables",
-    name: "Customers",
-    icon: "ni ni-bullet-list-67 text-pink",
-    component: Customers,
-    layout: "/admin",
-  },
+  // {
+  //   path: "/tables",
+  //   name: "Customers",
+  //   icon: "ni ni-bullet-list-67 text-pink",
+  //   component: Customers,
+  //   layout: "/admin",
+  // },
   {
     path: "/login",
     name: "Login",

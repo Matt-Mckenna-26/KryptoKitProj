@@ -19,12 +19,16 @@ import {
 } from "reactstrap";
 // core components
 import Header from "components/Headers/Header.js";
+import { UserContext } from "context/UserContext";
+import RedirectToLogin from "components/RedirectToLogin";
+
 
 const Wallet = () => {
-    //const {loggedUser, focusCoin} = useContext(GlobalContext);
-    //const [loggedInUser] = loggedUser;
+    const {loggedUser} = useContext(UserContext);
+
   return (
-    <>
+    loggedUser.username !== undefined ?
+    (<>
       <Header />
       {/* Page content */}
       {/* {loggedInUser.coinsPortfolio.map((coin, idx)=>(
@@ -132,7 +136,7 @@ const Wallet = () => {
           </div>
         </Row>
       </Container>
-    </>
+    </>): <RedirectToLogin/>
   );
 };
 
