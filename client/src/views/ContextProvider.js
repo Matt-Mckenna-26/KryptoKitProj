@@ -1,22 +1,12 @@
 import React, { useState, useEffect, createContext} from 'react';
 import axios from 'axios';
 
-export const GlobalContext = createContext();
+export const GlobalContext = createContext(null);
 
 export const ContextProvider = (props) => {
 
     // store all API and User information in state here
-    
-    useEffect(()=>{
-        axios.get('http://localhost:8000/api/users/loggedin')
-        .then((res)=>{
-            console.log(res.body)
-            setUserObj(res.data)
-        })
-        .catch((err)=>{
-            console.log(err)
-        })
-    },[])
+
 
     // this is to access the focusCoin --incomplete
 
@@ -39,5 +29,4 @@ export const ContextProvider = (props) => {
             {props.children}
         </GlobalContext.Provider>
     )
- 
 }

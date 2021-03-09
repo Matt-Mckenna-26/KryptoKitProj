@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import './App.css';
 import "assets/plugins/nucleo/css/nucleo.css";
@@ -7,13 +7,14 @@ import "assets/scss/kryptokit-dashboard-react.scss";
 
 import AdminLayout from "layouts/Admin.js";
 import AuthLayout from "layouts/Auth.js";
-
-import { ContextProvider } from './components/ContextProvider';
+import {UserContext} from './context/UserContext'
 
 function App() {
+  const [loggedUser, setLoggedUser] = useState({});
+
   const external_link="https://reactrouter.com/web/guides/quick-start";
   return (
-    <ContextProvider>
+    <UserContext.Provider value = {{loggedUser, setLoggedUser}}>
       <BrowserRouter>
         <Switch>
           <Route path="/admin" render={(props) => <AdminLayout {...props} />} />
@@ -21,7 +22,7 @@ function App() {
           <Redirect from="/" to="/admin/index" />
         </Switch>
       </BrowserRouter>
-    </ContextProvider>
+    </UserContext.Provider>
   );
 }
 

@@ -14,6 +14,7 @@
 import React, {useState} from "react";
 import { useHistory } from 'react-router';
 import axios from 'axios';
+import {navigate} from '@reach/router'
 
 // reactstrap components
 import {
@@ -42,7 +43,12 @@ const Register = () => {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    const newUser = {username, email, password, confirmPassword}
+    const newUser = {username, email, password, confirmPassword,
+      wallet : {
+        dollarBalance : 5000,
+        coinBalance : 0
+      }
+      }
     axios
       .post("http://localhost:8000/api/register", newUser, {
         withCredentials: true
@@ -53,11 +59,11 @@ const Register = () => {
         setEmail("");
         setPassword("");
         setConfirmPassword("");
+        console.log(res.data);
     })
     .catch(err => {
         console.log(err);
     });
-    alert("You are now registered!\nPlease login.")
     history.push("/auth/login");
   };
 
@@ -70,7 +76,7 @@ const Register = () => {
     <>
       <Col lg="6" md="8">
         <Card className="bg-secondary shadow border-0">
-          <CardHeader className="bg-transparent pb-4">
+          {/* <CardHeader className="bg-transparent pb-4">
             <div className="text-muted text-center mt-2 mb-4">
               <small>Sign up with</small>
             </div>
@@ -108,7 +114,7 @@ const Register = () => {
                 <span className="btn-inner--text">Google</span>
               </Button>
             </div>
-          </CardHeader>
+          </CardHeader> */}
           <CardBody className="px-lg-5 py-lg-3">
             <div className="text-center text-muted mb-4">
               <small>Sign in with Credentials</small>
@@ -193,14 +199,14 @@ const Register = () => {
                     required
                   />
                 </InputGroup>
-              </FormGroup>
-              <div className="text-muted font-italic">
+                </FormGroup>
+              {/* <div className="text-muted font-italic">
                 <small>
                   password strength:{" "}
                   <span className="text-success font-weight-700">strong</span>
                 </small>
-              </div>
-              <Row className="my-4">
+              </div> */}
+              {/* <Row className="my-4">
                 <Col xs="12">
                   <div className="custom-control custom-control-alternative custom-checkbox">
                     <input
@@ -221,7 +227,7 @@ const Register = () => {
                     </label>
                   </div>
                 </Col>
-              </Row>
+              </Row> */}
               <div className="text-center">
                 <Button className="mt-1" color="primary" type="button" onClick={handleRegister}>
                   Create account
