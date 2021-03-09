@@ -18,7 +18,7 @@ export default function LoginForm() {
                     <input>type="password" name="password"</input>
                 </p>
                 <p>
-                    <label>Confirm Password</label>
+                    <label></label>
                     <input>type="password" name="confirmPassword"</input>
                 </p>
                 <button type="submit">

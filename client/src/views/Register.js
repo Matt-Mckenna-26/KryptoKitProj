@@ -13,6 +13,7 @@
 */
 import React, {useState} from "react";
 import { useHistory } from 'react-router';
+import axios from 'axios';
 
 // reactstrap components
 import {
@@ -30,21 +31,40 @@ import {
   Col,
 } from "reactstrap";
 
-const Register = () => {
-  const [name, setName] = useState();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const history = useHistory();
 
-  const handleRegister = () => {
+const Register = () => {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const history = useHistory("");
+
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+    const newUser = {username, email, password, confirmPassword}
+    axios
+      .post("http://localhost:8000/api/register", newUser, {
+        withCredentials: true
+    })
+    .then(res => {
+        console.log(res);
+        setUsername("");
+        setEmail("");
+        setPassword("");
+        setConfirmPassword("");
+    })
+    .catch(err => {
+        console.log(err);
+    });
     alert("You are now registered!\nPlease login.")
     history.push("/auth/login");
-  }
+  };
 
   const handleAlert = (e) => {
     e.preventDefault();
     alert("Sign in option coming soon!");
-  }
+  };
 
   return (
     <>
@@ -102,11 +122,14 @@ const Register = () => {
                     </InputGroupText>
                   </InputGroupAddon>
                   <Input 
-                    placeholder="Name"
-                    label="Name" 
+                    placeholder="username"
+                    label="Username"
+                    name="username" 
                     type="text"
+                    onChange={e => setUsername(e.target.value)}
+                    value={username}
                     margin="normal"
-                    autoComplete="new-name" 
+                    autoComplete="new-username" 
                     required
                   />
                 </InputGroup>
@@ -124,6 +147,8 @@ const Register = () => {
                     margin="normal"
                     name="email"
                     type="email"
+                    onChange={e => setEmail(e.target.value)}
+                    value={email}
                     autoComplete="new-email" 
                     required
                   />
@@ -138,9 +163,32 @@ const Register = () => {
                   </InputGroupAddon>
                   <Input
                     placeholder="Password"
-                    label="Password" 
+                    label="Password"
+                    name="password" 
                     type="password"
                     margin="normal"
+                    onChange={e => setPassword(e.target.value)}
+                    value={password}
+                    autoComplete="new-password" 
+                    required
+                  />
+                </InputGroup>
+              </FormGroup>
+              <FormGroup>
+                <InputGroup className="input-group-alternative">
+                  <InputGroupAddon addonType="prepend">
+                    <InputGroupText>
+                      <i className="ni ni-lock-circle-open" />
+                    </InputGroupText>
+                  </InputGroupAddon>
+                  <Input
+                    placeholder="ConfirmPassword"
+                    label="ConfrimPassword"
+                    name="confirmPassword" 
+                    type="password"
+                    margin="normal"
+                    onChange={e => setConfirmPassword(e.target.value)}
+                    value={confirmPassword}
                     autoComplete="new-password" 
                     required
                   />

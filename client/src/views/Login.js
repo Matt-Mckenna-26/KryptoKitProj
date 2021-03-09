@@ -13,6 +13,7 @@
 */
 import React, {useState} from "react";
 import { useHistory } from 'react-router';
+import axios from 'axios';
 
 // reactstrap components
 import {
@@ -30,6 +31,7 @@ import {
   Col,
 } from "reactstrap";
 import { Link } from "react-router-dom";
+import {navigate} from "@reach/router";
 
 async function loginUser(credentials) {
  return fetch('http://localhost:8000/api/login', {
@@ -43,17 +45,35 @@ async function loginUser(credentials) {
 }
 
 const Login = () => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const [token, setToken] = useState();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [token, setToken] = useState("");
   const history = useHistory();
   
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
     const token = loginUser({
       email,
       password
     });
     setToken(token);
+    axios
+        .post(
+            "http://localhost:8000/api/login",
+            { email, password },
+            {
+                withCredentials: true
+            }
+        )
+        .then(res => {
+            console.log(res);
+            navigate("/dashboard");
+        })
+        .catch(err => {
+            console.log(err);
+            console.log("hello");
+            navigate("/auth/register");
+            window.location.reload(false);
+        });
     history.push("/");
   }
 
@@ -122,6 +142,8 @@ const Login = () => {
                     margin="normal"
                     name="email"
                     type="email"
+                    onChange={e => setEmail(e.target.value)}
+                    value={email}
                     autoComplete="new-email" 
                     required
                   />
@@ -137,6 +159,9 @@ const Login = () => {
                   <Input
                     label="Password" 
                     type="password"
+                    name="password"
+                    onChange={e => setPassword(e.target.value)}
+                    value={password}
                     margin="normal"
                     autoComplete="new-password" 
                     required
