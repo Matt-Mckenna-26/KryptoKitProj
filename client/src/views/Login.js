@@ -54,7 +54,8 @@ const Login = ({}) => {
   const history = useHistory();
   const {loggedUser, setLoggedUser} = useContext(UserContext)
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     const token = loginUser({
       email,
       password
