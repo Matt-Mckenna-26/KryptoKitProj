@@ -62,7 +62,7 @@ const Index = (props) => {
     setChartExample1Data("data" + index);
   };
   return (
-    loggedUser.username !== undefined ? 
+    loggedUser.username === undefined  ? 
       (
       <>
       <Header />

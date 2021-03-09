@@ -54,7 +54,7 @@ const Login = ({}) => {
   const history = useHistory();
   const {loggedUser, setLoggedUser} = useContext(UserContext)
 
-  const handleSubmit = (e) => {
+  const handleSubmit = () => {
     const token = loginUser({
       email,
       password
@@ -75,7 +75,8 @@ const Login = ({}) => {
                     })
                     .then(res => {
                         console.log(res);
-                        setLoggedUser(res.data)
+                        setLoggedUser(res.data);
+                        navigate("/admin/index");
                     })
                     .catch(err => console.log(err))
         })
