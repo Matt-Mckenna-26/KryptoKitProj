@@ -166,7 +166,7 @@ module.exports.updateUserWallet = (req, res) => {
       'wallet.$.dollarBalance': req.body.dollarBalance
     }
   }, {new:true, useFindAndModify:false})
-    .then(newUser => {res.send(newUser.wallet)})
+    .then(newUser => {res.send(newUser)})
     .catch(err => res.send(err))
 }
 
