@@ -55,6 +55,7 @@ const Login = ({}) => {
   const {loggedUser, setLoggedUser} = useContext(UserContext)
 
   const handleSubmit = (e) => {
+    e.preventDefault();
     const token = loginUser({
       email,
       password
