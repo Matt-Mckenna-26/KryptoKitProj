@@ -96,6 +96,12 @@ const Sidebar = (props) => {
       target: "_blank",
     };
   }
+  
+  let audio = new Audio("/cha-ching.mp3")
+
+  const start = () => {
+    audio.play()
+  }
 
   return (
     <Navbar
@@ -117,7 +123,7 @@ const Sidebar = (props) => {
           <NavbarBrand className="pt-0" {...navbarBrandProps}>
             <img
               alt={logo.imgAlt}
-              className="navbar-brand-img"
+              className="navbar-brand-img animated swing"
               src={logo.imgSrc}
             />
           </NavbarBrand>
@@ -240,6 +246,7 @@ const Sidebar = (props) => {
                 <img 
                   alt="face" 
                   width="32" 
+                  className="animated rollIn"
                   style={{margin:"0 .75em 0 -.5em"}}
                   src={
                     require("../../assets/img/theme/Team-4.png")
@@ -254,6 +261,7 @@ const Sidebar = (props) => {
                 <img 
                   alt="face" 
                   width="32" 
+                  className="animated spaceInRight"
                   style={{margin:"0 .75em 0 -.5em"}}
                   src={
                     require("../../assets/img/theme/Team-2.png")
@@ -268,6 +276,7 @@ const Sidebar = (props) => {
                 <img 
                   alt="face" 
                   width="32" 
+                  className="animated rollIn"
                   style={{margin:"0 .75em 0 -.5em"}}
                   src={
                     require("../../assets/img/theme/Team-6.png")
@@ -282,6 +291,7 @@ const Sidebar = (props) => {
                 <img 
                   alt="face" 
                   width="32" 
+                  className="animated spaceInRight"
                   style={{margin:"0 .75em 0 -.5em"}}
                   src={
                     require("../../assets/img/theme/Team-3.png")
@@ -296,6 +306,7 @@ const Sidebar = (props) => {
                 <img 
                   alt="face" 
                   width="32" 
+                  className="animated rollIn"
                   style={{margin:"0 .75em 0 -.5em"}}
                   src={
                     require("../../assets/img/theme/Team-1.png")
@@ -308,8 +319,8 @@ const Sidebar = (props) => {
           </Nav>
           <Nav className="mb-md-3" navbar>
             <NavItem className="active-pro active">
-              <NavLink href="https://www.codingdojo.com?ref=adr-admin-sidebar">
-                <i className="ni ni-favourite-28" />
+              <NavLink href="https://www.codingdojo.com?ref=adr-admin-sidebar" onClick={start}>
+                <i className="ni ni-favourite-28 animated-pulse pulse" />
                 Inspired by CodingDojo
               </NavLink>
             </NavItem>

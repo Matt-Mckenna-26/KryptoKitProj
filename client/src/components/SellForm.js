@@ -96,8 +96,8 @@ const SellForm = () => {
             {
                 //instead of mapping through all coins it will only map through the coins currently in the users portfolio
             allCrypto.map((list, index) => (
-                <Card className="singleCoin shadow-sm" style={{ display:"inline-grid", width: "12em", margin:".5em" }} key={index}>
-                    <CardHeader className="bg-transparent text-center">
+                <Card className="singleCoin shadow-sm" style={{ display:"inline-grid", width: "12em", margin:".5em", minHeight:"250px" }} key={index}>
+                    <CardHeader className="bg-transparent text-center" style={{maxHeight:"100px"}}>
                         <img src={list.image.small} />
                     </CardHeader>
                     <CardBody className="text-center">
