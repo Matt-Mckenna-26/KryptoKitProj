@@ -1,5 +1,4 @@
-import React, {useState, useContext} from "react";
-import {GlobalContext} from "./ContextProvider";
+import React, {useState} from "react";
 import axios from "axios";
 
 const SignUp = props => {
@@ -79,7 +78,7 @@ const SignUp = props => {
                     )}
                 </div>
                 <div className="form-group">
-                    <label>Confirm Password:</label>
+                    <label>:</label>
                     <input
                         type="password"
                         name="confirmPassword"
