@@ -98,7 +98,7 @@ const BuySellForm = (props) => {
                 <Card className="singleCoin shadow-sm" style={{ display:"inline-grid", width: "12em", minHeight:"250px", margin:".5em" }} key={index}>
                     <CardHeader style={{maxHeight:"100px"}} className="bg-transparent text-center">
                         <img src={list.image.small} />
-                    </CardHeader>
+                    </CardHeader> 
                     <CardBody className="text-center">
                     <h4 for="list.name">{list.name}</h4>
                         <p style={{fontSize:"15px", margin:"5px 0px"}}>Current Price:</p>
