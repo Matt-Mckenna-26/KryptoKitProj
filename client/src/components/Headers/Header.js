@@ -42,7 +42,7 @@ const Header = () => {
                           Dollar Balance
                         </CardTitle>
                         <span className="h2 font-weight-bold mb-0">
-                          ${loggedUser.wallet[0].dollarBalance}
+                        ${Math.round(100*(loggedUser.wallet[0].dollarBalance))/100}
                         </span>
                       </div>
                       <Col className="col-auto">
