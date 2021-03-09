@@ -11,8 +11,8 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import { helpers } from "chart.js";
-import RedirectToLogin from "components/RedirectToLogin";
+//import { helpers } from "chart.js";
+//import RedirectToLogin from "components/RedirectToLogin";
 import { UserContext } from "context/UserContext";
 import React, {useContext} from "react";
 import { Redirect } from "react-router-dom";
