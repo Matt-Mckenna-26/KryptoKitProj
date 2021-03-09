@@ -11,7 +11,8 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import { UserContext } from "context/UserContext";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 // reactstrap components
 import {
@@ -32,7 +33,7 @@ import {
 } from "reactstrap";
 
 const AdminNavbar = (props) => {
-
+  const {loggedUser} = useContext(UserContext)
   
   return (
     <>
@@ -71,7 +72,7 @@ const AdminNavbar = (props) => {
                   </span> */}
                   <Media className="ml-2 d-none d-lg-block">
                     <span className="mb-0 text-sm font-weight-bold text-white">
-                      Welcome Member
+                      Welcome {loggedUser.username}
                     </span>
                   </Media>
                 </Media>

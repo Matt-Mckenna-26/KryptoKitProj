@@ -11,7 +11,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 // node.js library that concatenates classes (strings)
 import classnames from "classnames";
 // javascipt plugin for creating charts
@@ -43,10 +43,13 @@ import {
 } from "variables/charts.js";
 
 import Header from "components/Headers/Header.js";
+import { UserContext } from "context/UserContext";
+import RedirectToLogin from "components/RedirectToLogin";
 
 const Index = (props) => {
   const [activeNav, setActiveNav] = useState(1);
   const [chartExample1Data, setChartExample1Data] = useState("data1");
+  const {loggedUser, setLoggedUser} = useContext(UserContext);
 
   if (window.Chart) {
     parseOptions(Chart, chartOptions());
@@ -58,7 +61,9 @@ const Index = (props) => {
     setChartExample1Data("data" + index);
   };
   return (
-    <>
+    loggedUser.username !== undefined ? 
+      (
+      <>
       <Header />
       {/* Page content */}
       <Container className="mt--7" fluid>
@@ -241,7 +246,7 @@ const Index = (props) => {
           </Col>
         </Row>
       </Container>
-    </>
+    </>): <RedirectToLogin/>
   );
 };
 

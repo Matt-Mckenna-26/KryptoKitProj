@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 // reactstrap components
 import {
   Card,
@@ -10,11 +10,14 @@ import {
 // core components
 import Header from "components/Headers/Header.js";
 import Buysell from "../components/BuySellForm";
+import { UserContext } from "context/UserContext";
+import RedirectToLogin from "components/RedirectToLogin";
 
 const BuySell = () => {
-
+  const {loggedUser} = useContext(UserContext)
   return (
-    <>
+    loggedUser.username !== undefined ?
+    (<>
       <Header />
       {/* Page content */}
       <Container className="mt--7" fluid>
@@ -32,7 +35,7 @@ const BuySell = () => {
           </div>
         </Row>
       </Container>
-    </>
+    </>) : <RedirectToLogin/>
   );
 };
 
