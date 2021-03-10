@@ -37,7 +37,7 @@ const BuySellForm = ({loggedUser, setLoggedUser}) => {
         let currentCoinPrices = {} 
         let queryParam = ''
         newUser.coinsPortfolio.map((coin,idx) => {
-            queryParam += `${coin.coinName.replace(/\s+/g, '')}%2C`
+            queryParam += `${coin.coinId}%2C`
         }) 
                 axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${queryParam}&vs_currencies=usd`,
                     )
@@ -45,7 +45,7 @@ const BuySellForm = ({loggedUser, setLoggedUser}) => {
                         currentCoinPrices = res.data
                         console.log(currentCoinPrices)
                             newUser.coinsPortfolio.map((coin, idx) => {
-                                let coinValue = coin.numberOfCoins * currentCoinPrices[`${coin.coinName.replace(/\s+/g, '')}`].usd
+                                let coinValue = coin.numberOfCoins * currentCoinPrices[`${coin.coinId}`].usd
                                 //store totalCoin Value in state to pass in req.body 
                                 totalCoinValue += coinValue;
                                 console.log(totalCoinValue);
@@ -70,10 +70,12 @@ const BuySellForm = ({loggedUser, setLoggedUser}) => {
     const submitFirstBuy = () => {
         console.log(loggedUser)
         axios.put(`http://localhost:8000/api/firstBuy/${loggedUser._id}`,
-                            {coinName: selectedCoin.id,
+                            {coinName: selectedCoin.name,
+                            coinId: selectedCoin.id,
                             avgCost: selectedCoin.market_data.current_price.usd,
                             userDollarsSpent: thisTransactionDollars,
-                            numberOfCoins: thisTransactionDollars/selectedCoin.market_data.current_price.usd
+                            numberOfCoins: thisTransactionDollars/selectedCoin.market_data.current_price.usd,
+                            coinLogo : selectedCoin.image.small
                             },{
                             withCredentials: true
                             })
