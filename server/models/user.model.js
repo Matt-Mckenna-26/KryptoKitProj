@@ -15,9 +15,15 @@ const coinsTrackedSchema = new mongoose.Schema({
 	}
 })
 const coinTransactionSchema = new mongoose.Schema({
-	coinName: {
+	coinId: {
 		type: String,
 		required: [true, 'must include coin ticker to make a transaction']
+	},
+	coinName: {
+		type: String
+	},
+	coinLogo : {
+		type: String
 	},
 	avgCost : {
 		type: Number, 

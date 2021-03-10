@@ -11,7 +11,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 // node.js library that concatenates classes (strings)
 import classnames from "classnames";
@@ -46,12 +46,52 @@ import {
 import Header from "components/Headers/Header.js";
 import { UserContext } from "context/UserContext";
 import RedirectToLogin from "components/RedirectToLogin";
+import axios from 'axios';
 import Login from "./Login";
 
 const Index = (props) => {
   const [activeNav, setActiveNav] = useState(1);
   const [chartExample1Data, setChartExample1Data] = useState("data1");
+  const [coinPricesObj, setCoinPricesObj] = useState({})
   const {loggedUser, setLoggedUser} = useContext(UserContext);
+
+  // const getTotalWalletCoinValue = () => {
+  //   let totalCoinValue = 0 
+  //   let currentCoinPrices = {} 
+  //   let queryParam = ''
+  //   loggedUser.coinsPortfolio.map((coin,idx) => {
+  //       queryParam += `${coin.coinId}%2C`
+  //   }) 
+  //           axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${queryParam}&vs_currencies=usd`,
+  //               )
+  //               .then(res => {
+  //                   currentCoinPrices = res.data
+  //                   setCoinPricesObj(res.data)
+  //                   console.log(currentCoinPrices)
+  //                       loggedUser.coinsPortfolio.map((coin, idx) => {
+  //                           let coinValue = coin.numberOfCoins * currentCoinPrices[`${coin.coinId}`].usd
+  //                           //store totalCoin Value in state to pass in req.body 
+  //                           totalCoinValue += coinValue;
+  //                           console.log(totalCoinValue);
+  //                       })
+  //                       axios.put(`http://localhost:8000/api/updateUserWallet/${loggedUser._id}/${loggedUser.wallet[0]._id}`,
+  //                       //store totalCoinValue in state to pass in req.body to update user coinBalance 
+  //                           {coinBalance : totalCoinValue,
+  //                           dollarBalance : loggedUser.wallet[0].dollarBalance
+  //                           }, {
+  //                               withCredentials: true
+  //                           })
+  //                           .then(res =>{console.log(res)
+  //                                   setLoggedUser(res.data)
+  //                           })
+  //                           .catch(err => console.log(`error updating the user wallets coin value`, {err}))
+  //                   })
+  //               .catch(err =>{console.log(`error fetching up to date prices`, {err})
+  //                               console.log(queryParam)
+  //           })
+  //       }
+
+  //   useEffect(() => getTotalWalletCoinValue(), [])
 
   if (window.Chart) {
     parseOptions(Chart, chartOptions());
@@ -166,82 +206,25 @@ const Index = (props) => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">Bitcoin</th>
-                    <td>15</td>
+                  {loggedUser.coinsPortfolio.map((coin, idx) => (
+                    <tr>
+                    <th scope="row">{coin.coinName}</th>
+                    <td>{coin.numberOfCoins}</td>
                     <td>
                       <div className="d-flex align-items-center">
                         <span className="mr-2">60%</span>
                         <div>
                           <Progress
                             max="100"
-                            value="60"
-                            barClassName="bg-gradient-danger"
+                            // value={((coinPricesObj[coin.coinId].usd)/(loggedUser.wallet[0].coinValue))*100}
+                            barClassName="bg-gradient-primary"
                           />
                         </div>
                       </div>
                     </td>
                   </tr>
-                  <tr>
-                    <th scope="row">Ethereum</th>
-                    <td>15</td>
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <span className="mr-2">70%</span>
-                        <div>
-                          <Progress
-                            max="100"
-                            value="70"
-                            barClassName="bg-gradient-success"
-                          />
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Litecoin</th>
-                    <td>15</td>
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <span className="mr-2">80%</span>
-                        <div>
-                          <Progress max="100" value="80" />
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Ripple</th>
-                    <td>15</td>
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <span className="mr-2">75%</span>
-                        <div>
-                          <Progress
-                            max="100"
-                            value="75"
-                            barClassName="bg-gradient-info"
-                          />
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">NEO</th>
-                    <td>15</td>
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <span className="mr-2">30%</span>
-                        <div>
-                          <Progress
-                            max="100"
-                            value="30"
-                            barClassName="bg-gradient-warning"
-                          />
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
+                  ))
+                  }       
                 </tbody>
               </Table>
             </Card>

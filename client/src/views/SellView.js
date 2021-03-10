@@ -28,7 +28,7 @@ const SellView = () => {
           <div className="col-12">
             <Card className="shadow">
               <CardHeader className="bg-transparent">
-                <h3 className="mb-0">Sell Cryptocurrency ( below options will map through user portfolio instead of all coins)</h3>
+                <h3 className="mb-0">Sell Cryptocurrency</h3>
               </CardHeader>
               <CardBody>
                 <SellForm loggedUser={loggedUser} setLoggedUser={setLoggedUser}/>

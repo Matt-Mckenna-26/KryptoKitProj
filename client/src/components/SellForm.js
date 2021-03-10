@@ -80,7 +80,7 @@ const SellForm = ({loggedUser, setLoggedUser}) => {
                 disabled={true}
                 type="text"
                 defaultValue ='Select a coin below to purchase'
-                value = {selectedCoin !== undefined ? selectedCoin.name : 'Select a coin below to sell'}
+                value = {selectedCoin !== undefined ? selectedCoin.coinName : 'Select a coin below to sell'}
                 />
             </InputGroup>
             <InputGroup className="input-group-alternative center" style={{width:"400px", margin:".5em 0 1em 0"}}>
@@ -118,15 +118,12 @@ const SellForm = ({loggedUser, setLoggedUser}) => {
             loggedUser.coinsPortfolio.map((coin, idx) => (
                 <Card className="singleCoin shadow-sm" style={{ display:"inline-grid", width: "12em", margin:".5em", minHeight:"250px" }} key={idx}>
                     <CardHeader className="bg-transparent text-center" style={{maxHeight:"100px"}}>
-                        <h2>{coin.coinName}</h2>
+                        <img src={coin.coinLogo} />
                     </CardHeader>
                     <CardBody className="text-center">
                     <h4 for="list.name">{coin.coinName}</h4>
-                        {/* <p style={{fontSize:"15px", margin:"5px 0px"}}>Current Price: ${(list.market_data.current_price.usd).toLocaleString(undefined, {minimumFractionDigits:2})}</p> */}
-                        <ul className='list-unstyled'>
-                            <li>Average Cost: {coin.avgCost}</li>
-                            <li>Number of Coins Owned: {coin.numberOfCoins}</li>
-                        </ul>
+                        <p style={{fontSize:"15px", margin:"5px 0px"}}>Coins Owned: {coin.numberOfCoins}</p>
+                        <p style={{fontSize:"15px", margin:"5px 0px"}}>Avg Cost: ${coin.avgCost}</p>
                         <input
                             type="radio" 
                             onClick={(e) => setSelectedCoin(coin)}
