@@ -66,6 +66,8 @@ const BuySellForm = ({loggedUser, setLoggedUser}) => {
                     .catch(err =>{console.log(`error fetching up to date prices`)
                                     console.log(queryParam)
                 })
+                setSelectedCoin(undefined)
+                setThisTransactionDollars(0)
             }
 
     const submitFirstBuy = () => {
@@ -122,6 +124,7 @@ const BuySellForm = ({loggedUser, setLoggedUser}) => {
                 placeholder="USD Currency (min $100)"
                 type="text"
                 autoComplete="new-amount"
+                value = {thisTransactionDollars}
                 
                 onChange={ (e) => setThisTransactionDollars(e.target.value)}
                 />

@@ -63,6 +63,8 @@ const SellForm = ({loggedUser, setLoggedUser}) => {
                     .catch(err =>{console.log(`error fetching up to date prices`)
                                     console.log(queryParam)
                 })
+                setSelectedCoin(undefined)
+                setThisTransactionDollars(0)
             }
 
 
@@ -134,7 +136,7 @@ const SellForm = ({loggedUser, setLoggedUser}) => {
                 placeholder="USD Currency (min $100)"
                 type="text"
                 autoComplete="new-amount"
-                
+                value = {thisTransactionDollars}
                 onChange={ (e) => setThisTransactionDollars(e.target.value)}
                 />
                 <Button className="ni ni-check-bold" color="primary" onClick={(e) => sellCoin()}>
@@ -149,7 +151,7 @@ const SellForm = ({loggedUser, setLoggedUser}) => {
                 disabled={true}
                 type="text"
                 defaultValue = {0}
-                value = {selectedCoin !== undefined ? thisTransactionDollars/(selectedCoin.numberOfCoins* coinPricesObj[selectedCoin.coinId].usd): 0}
+                value = {selectedCoin !== undefined ? (thisTransactionDollars/(coinPricesObj[selectedCoin.coinId].usd)): 0}
                 />
             </InputGroup>
             {coinPricesObj !== undefined ? 

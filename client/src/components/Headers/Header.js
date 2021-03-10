@@ -85,7 +85,7 @@ const Header = () => {
                           Dollar Balance
                         </CardTitle>
                         <span className="h2 font-weight-bold mb-0">
-                        ${Math.round(100*(loggedUser.wallet[0].dollarBalance))/100}
+                        ${(loggedUser.wallet[0].dollarBalance).toLocaleString(undefined, {minimumFractionDigits:2})}
                         </span>
                       </div>
                       <Col className="col-auto">
@@ -114,7 +114,7 @@ const Header = () => {
                         >
                           Coin Balance
                         </CardTitle>
-                        <span className="h2 font-weight-bold mb-0">${Math.round(100*(loggedUser.wallet[0].coinBalance))/100}</span>
+                        <span className="h2 font-weight-bold mb-0">${(loggedUser.wallet[0].coinBalance).toLocaleString(undefined, {minimumFractionDigits:2})}</span>
                       </div>
                       <Col className="col-auto">
                         <div className="icon icon-shape bg-warning text-white rounded-circle shadow">
@@ -142,7 +142,7 @@ const Header = () => {
                         >
                           Account % Change
                         </CardTitle>
-                        <span className="h2 font-weight-bold mb-0">{Math.round(100*(5000-(loggedUser.wallet[0].dollarBalance + loggedUser.wallet[0].coinBalance))/5000)/100}%</span>
+                        <span className="h2 font-weight-bold mb-0">{(((loggedUser.wallet[0].dollarBalance + loggedUser.wallet[0].coinBalance)-5000)/5000).toLocaleString(undefined, {minimumFractionDigits:2})}%</span>
                       </div>
                       <Col className="col-auto">
                         <div className="icon icon-shape bg-info text-white rounded-circle shadow">
