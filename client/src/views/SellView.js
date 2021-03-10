@@ -12,6 +12,7 @@ import Header from "components/Headers/Header.js";
 import SellForm from "../components/SellForm";
 import { UserContext } from "context/UserContext";
 import RedirectToLogin from "components/RedirectToLogin";
+import Login from "./Login";
 
 const SellView = () => {
   const {loggedUser, setLoggedUser} = useContext(UserContext)
@@ -36,7 +37,7 @@ const SellView = () => {
           </div>
         </Row>
       </Container>
-    </>) : <RedirectToLogin/>
+    </>) : <Login/>
   );
 };
 

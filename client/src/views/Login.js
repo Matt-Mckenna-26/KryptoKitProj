@@ -55,6 +55,7 @@ const Login = ({}) => {
   const {loggedUser, setLoggedUser} = useContext(UserContext)
 
   const handleSubmit = (e) => {
+    let user = {}
     e.preventDefault();
     const token = loginUser({
       email,
@@ -77,7 +78,6 @@ const Login = ({}) => {
                     .then(res => {
                         console.log(res);
                         setLoggedUser(res.data);
-                        navigate("/admin/index");
                     })
                     .catch(err => console.log(err))
         })
@@ -88,7 +88,6 @@ const Login = ({}) => {
             window.location.reload(false);
         });
     history.push("/");
-    console.log(loggedUser)
   }
 
   const handleAlert = (e) => {

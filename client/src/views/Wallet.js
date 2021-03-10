@@ -22,6 +22,7 @@ import {
 import Header from "components/Headers/Header.js";
 import { UserContext } from "context/UserContext";
 import RedirectToLogin from "components/RedirectToLogin";
+import Login from "./Login";
 
 
 const Wallet = () => {
@@ -137,7 +138,7 @@ const Wallet = () => {
           </div>
         </Row>
       </Container>
-    </>): <Redirect from="/" to="/auth/login" />
+    </>): <Login/>
 
     // <RedirectToLogin/>
   );
