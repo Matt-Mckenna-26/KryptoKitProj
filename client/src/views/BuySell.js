@@ -13,6 +13,7 @@ import Header from "components/Headers/Header.js";
 import Buysell from "../components/BuySellForm";
 import { UserContext } from "context/UserContext";
 import RedirectToLogin from "components/RedirectToLogin";
+import Login from "./Login";
 
 const BuySell = () => {
   const {loggedUser, setLoggedUser} = useContext(UserContext)
@@ -36,7 +37,7 @@ const BuySell = () => {
           </div>
         </Row>
       </Container>
-    </>) : <Redirect from="/" to="/auth/login" />
+    </>) : <Login/>
 
     // <RedirectToLogin/>
   );

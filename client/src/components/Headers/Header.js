@@ -18,8 +18,10 @@ import React, {useContext, useEffect} from "react";
 import { Redirect } from "react-router-dom";
 import axios from 'axios'
 
+
 // reactstrap components
 import { Card, CardBody, CardTitle, Container, Row, Col } from "reactstrap";
+import Login from "views/Login";
 
 const Header = () => {
   const {loggedUser, setLoggedUser} = useContext(UserContext)
@@ -59,11 +61,10 @@ const Header = () => {
             })
         }
 
-  useEffect(() => getTotalWalletCoinValue(), [setLoggedUser])
 
   return (
     <>
-    {loggedUser.username === undefined ? <Redirect from="/" to="/auth/login" />  : 
+    {loggedUser.username === undefined ?  <Login/> :
       <div className="header bg-gradient-info pb-8 pt-5 pt-md-8">
         <Container fluid>
           <div className="header-body">
@@ -189,7 +190,7 @@ const Header = () => {
           </div>
         </Container>
       </div>
-}
+      }
     </>
   );
 };

@@ -46,6 +46,7 @@ import {
 import Header from "components/Headers/Header.js";
 import { UserContext } from "context/UserContext";
 import RedirectToLogin from "components/RedirectToLogin";
+import Login from "./Login";
 
 const Index = (props) => {
   const [activeNav, setActiveNav] = useState(1);
@@ -62,7 +63,7 @@ const Index = (props) => {
     setChartExample1Data("data" + index);
   };
   return (
-    loggedUser.username === undefined  ? 
+    loggedUser.username !== undefined  ? 
       (
       <>
       <Header />
@@ -247,9 +248,7 @@ const Index = (props) => {
           </Col>
         </Row>
       </Container>
-    </>): <Redirect from="/" to="/auth/login" />
-
-    // <RedirectToLogin/>
+    </>): <RedirectToLogin/>
   );
 };
 

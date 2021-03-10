@@ -22,6 +22,8 @@ const SellForm = ({loggedUser, setLoggedUser}) => {
     const [ userDollarsSpent, setUserDollarsSpent ] = useState("");
     const [ errs, setErrs ] = useState({});
     const [selectedCoin, setSelectedCoin] = useState(undefined);
+
+    console.log(selectedCoin)
     
     const submitForm = (e) => {
         e.preventDefault();
@@ -42,6 +44,14 @@ const SellForm = ({loggedUser, setLoggedUser}) => {
         })
         .catch((err) => console.log(err));  
     }
+
+    const getCoinPortfolioData = (coinName) => {
+            ///api/coinInfo/:userId/:coinName
+            axios.get(`http://localhost:8000/api/coinInfo/${loggedUser._id}/${coinName}`)
+                .then(res => console.log(res.data))
+                .catch(err => console.log({err}))
+    }
+    
     
     // const getCoinsCurrentValue = () => {
     //     loggedUser.coinsPortfolio.map((coin,idx) => {
