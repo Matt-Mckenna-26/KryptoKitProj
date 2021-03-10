@@ -31,7 +31,7 @@ const Header = () => {
     let currentCoinPrices = {} 
     let queryParam = ''
     loggedUser.coinsPortfolio.map((coin,idx) => {
-        queryParam += `${coin.coinName.replace(/\s+/g, '')}%2C`
+        queryParam += `${coin.coinId}%2C`
     }) 
             axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${queryParam}&vs_currencies=usd`,
                 )
@@ -39,7 +39,7 @@ const Header = () => {
                     currentCoinPrices = res.data
                     console.log(currentCoinPrices)
                         loggedUser.coinsPortfolio.map((coin, idx) => {
-                            let coinValue = coin.numberOfCoins * currentCoinPrices[`${coin.coinName.replace(/\s+/g, '')}`].usd
+                            let coinValue = coin.numberOfCoins * currentCoinPrices[`${coin.coinId}`].usd
                             //store totalCoin Value in state to pass in req.body 
                             totalCoinValue += coinValue;
                             console.log(totalCoinValue);
@@ -60,6 +60,9 @@ const Header = () => {
                                 console.log(queryParam)
             })
         }
+
+        useEffect(() => getTotalWalletCoinValue(), [])
+
 
 
   return (
