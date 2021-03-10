@@ -27,7 +27,7 @@ module.exports = app => {
   app.put("/api/sellAll/:userId/:coinName", authenticate, UserController.closeCoinPosition);
 
   //Route here is used for subsequent transactions (buying more... selling some(not all!))
-  app.put("/api/buysell/:userId/:coinName", authenticate, UserController.updateCoinInPortfolio);
+  app.put("/api/buysell/:userId/:coinId", authenticate, UserController.updateCoinInPortfolio);
 
   //this method should be called with the coin controllers to update the user wallet on login as well as subsequent trades. 
   app.put("/api/updateUserWallet/:userId/:walletId", authenticate, UserController.updateUserWallet);
