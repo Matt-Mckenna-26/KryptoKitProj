@@ -41,7 +41,7 @@ const coinTransactionSchema = new mongoose.Schema({
 const walletSchema = new mongoose.Schema({
 	dollarBalance: {
 		type: Number,
-		default: 1000
+		default: 5000
 	},
 	coinBalance : {
 		type:Number,

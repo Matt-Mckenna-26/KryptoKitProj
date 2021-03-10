@@ -13,62 +13,102 @@ import {
   InputGroupText,
   InputGroup,
   Label,
+  Spinner,
 } from "reactstrap";
 
 import axios from 'axios';
 import { UserContext } from 'context/UserContext';
+import { set } from 'mongoose';
 
 const SellForm = ({loggedUser, setLoggedUser}) => {
-    const [ userDollarsSpent, setUserDollarsSpent ] = useState("");
+    const [ thisTransactionDollars, setThisTransactionDollars ] = useState("");
     const [ errs, setErrs ] = useState({});
     const [selectedCoin, setSelectedCoin] = useState(undefined);
+    const [coinPricesObj, setCoinPricesObj] = useState(undefined);
+    const [userLoaded, setUserLoaded] = useState(false);
 
     console.log(selectedCoin)
-    
-    const submitForm = (e) => {
-        e.preventDefault();
-        axios
-        .post("http://localhost:8000/api/buysell", {
-            userDollarsSpent: userDollarsSpent,
-            numberOfCoins: (userDollarsSpent/(selectedCoin.market_data.current_price.usd)),
-            avgCost: ((userDollarsSpent/(selectedCoin.market_data.current_price.usd))/userDollarsSpent)
+
+    const setWalletValueAfterSell = (newUser) => {
+        let totalCoinValue = 0 
+        let currentCoinPrices = {} 
+        let queryParam = ''
+        newUser.coinsPortfolio.map((coin,idx) => {
+            queryParam += `${coin.coinId}%2C`
+        }) 
+                axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${queryParam}&vs_currencies=usd`,
+                    )
+                    .then(res => {
+                        currentCoinPrices = res.data
+                        console.log(currentCoinPrices)
+                            newUser.coinsPortfolio.map((coin, idx) => {
+                                let coinValue = coin.numberOfCoins * currentCoinPrices[`${coin.coinId}`].usd
+                                //store totalCoin Value in state to pass in req.body 
+                                totalCoinValue += coinValue;
+                                console.log(totalCoinValue);
+                            })
+                            axios.put(`http://localhost:8000/api/updateUserWallet/${newUser._id}/${newUser.wallet[0]._id}`,
+                            //store totalCoinValue in state to pass in req.body to update user coinBalance 
+                                {dollarBalance : (parseFloat(newUser.wallet[0].dollarBalance) + parseFloat(thisTransactionDollars)),
+                                    coinBalance : totalCoinValue,
+                                }
+                                ,{
+                                    withCredentials: true
+                                })
+                                .then(res =>{console.log(res)
+                                    setLoggedUser(res.data)
+                                })
+                                .catch(err => console.log(`error updating the user wallets coin value`, {err}))
+                        })
+                    .catch(err =>{console.log(`error fetching up to date prices`)
+                                    console.log(queryParam)
+                })
+            }
+
+
+
+
+    const sellCoin = (e) => {
+        let amountSold = thisTransactionDollars
+        let numOfCoinsSold = (thisTransactionDollars /((coinPricesObj[selectedCoin.coinId].usd)))
+        axios.put(`http://localhost:8000/api/buysell/${loggedUser._id}/${selectedCoin.coinId}`, {
+            userDollarsSpent: (selectedCoin.userDollarsSpent - amountSold),
+            numberOfCoins: (selectedCoin.numberOfCoins - numOfCoinsSold),
+            avgCost: ((selectedCoin.userDollarsSpent - amountSold)/(selectedCoin.numberOfCoins - numOfCoinsSold))
+        },{
+            withCredentials:true
         })
         .then((res) => {
-            if(res.data.errors) {
-                setErrs(res.data.errors);
-                console.log(res.data.errors);
-            } else {
-                console.log(res.data._id);
-                navigate(`/buysell/${res.data._id}`);
-            }
+            console.log(res.data)
+            setWalletValueAfterSell(res.data)
         })
-        .catch((err) => console.log(err));  
+        .catch((err) => console.log({err}));  
     }
 
-    const getCoinPortfolioData = (coinName) => {
-            ///api/coinInfo/:userId/:coinName
-            axios.get(`http://localhost:8000/api/coinInfo/${loggedUser._id}/${coinName}`)
-                .then(res => console.log(res.data))
-                .catch(err => console.log({err}))
+
+//used to get an object with the real time price of each coin the user holds in portfolio
+    const getCurrentCoinPrices = () => {
+        let currentCoinPrices = {} 
+        let queryParam = ''
+        loggedUser.coinsPortfolio.map((coin,idx) => {
+            queryParam += `${coin.coinId}%2C`
+        }) 
+                axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${queryParam}&vs_currencies=usd`,
+                    )
+                    .then(res => {
+                        currentCoinPrices = res.data
+                        setCoinPricesObj(res.data)
+                        console.log('run')
+                        })
+                    .catch(err =>{console.log(`error fetching up to date prices`, {err})
+                })
     }
-    
-    
-    // const getCoinsCurrentValue = () => {
-    //     loggedUser.coinsPortfolio.map((coin,idx) => {
-    //         queryParam += `${coin.coinName.replace(/\s+/g, '')}%2C`
-    //     }) 
-    //             axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${queryParam}&vs_currencies=usd`,
-    //                 )
-    //                 .then(res => {
-    //                     currentCoinPrices = res.data
-    //                     console.log(currentCoinPrices)
-    //                         loggedUser.coinsPortfolio.map((coin, idx) => {
-    //                             let coinValue = coin.numberOfCoins * currentCoinPrices[`${coin.coinName.replace(/\s+/g, '')}`].usd
-    //                             //store totalCoin Value in state to pass in req.body 
-    //                             totalCoinValue += coinValue;
-    //                             console.log(totalCoinValue);
-    //                         })
-    //                 }
+//not the best way to do this but this conditional ensure we get current prices only on page initial load 
+    if (loggedUser.username !== undefined && userLoaded === false) {
+        getCurrentCoinPrices()
+        setUserLoaded(true)
+    }
+
 
     return(
         <Container fluid>
@@ -95,9 +135,9 @@ const SellForm = ({loggedUser, setLoggedUser}) => {
                 type="text"
                 autoComplete="new-amount"
                 
-                onChange={ (e) => setUserDollarsSpent(e.target.value)}
+                onChange={ (e) => setThisTransactionDollars(e.target.value)}
                 />
-                <Button className="ni ni-check-bold" color="primary" type="submit">
+                <Button className="ni ni-check-bold" color="primary" onClick={(e) => sellCoin()}>
                 Sell Coin
                 </Button>
             </InputGroup>
@@ -109,13 +149,12 @@ const SellForm = ({loggedUser, setLoggedUser}) => {
                 disabled={true}
                 type="text"
                 defaultValue = {0}
-                // value = {selectedCoin !== undefined ? userDollarsSpent/selectedCoin.market_data.current_price.usd : 0}
+                value = {selectedCoin !== undefined ? thisTransactionDollars/(selectedCoin.numberOfCoins* coinPricesObj[selectedCoin.coinId].usd): 0}
                 />
             </InputGroup>
+            {coinPricesObj !== undefined ? 
             <div style={{ height:"420px",overflowY:"scroll"}}>
-            {
-                //instead of mapping through all coins it will only map through the coins currently in the users portfolio
-            loggedUser.coinsPortfolio.map((coin, idx) => (
+            {loggedUser.coinsPortfolio.map((coin, idx) => (
                 <Card className="singleCoin shadow-sm" style={{ display:"inline-grid", width: "12em", margin:".5em", minHeight:"250px" }} key={idx}>
                     <CardHeader className="bg-transparent text-center" style={{maxHeight:"100px"}}>
                         <img src={coin.coinLogo} />
@@ -123,6 +162,7 @@ const SellForm = ({loggedUser, setLoggedUser}) => {
                     <CardBody className="text-center">
                     <h4 for="list.name">{coin.coinName}</h4>
                         <p style={{fontSize:"15px", margin:"5px 0px"}}>Coins Owned: {coin.numberOfCoins}</p>
+                        <p style={{fontSize:"15px", margin:"5px 0px"}}>Current Value(Usd): {(coin.numberOfCoins* coinPricesObj[coin.coinId].usd).toLocaleString(undefined, {minimumFractionDigits:2})}</p>
                         <p style={{fontSize:"15px", margin:"5px 0px"}}>Avg Cost: ${coin.avgCost}</p>
                         <input
                             type="radio" 
@@ -135,9 +175,9 @@ const SellForm = ({loggedUser, setLoggedUser}) => {
                         />
                     </CardBody>
                 </Card>
-            ))
-            }
+            ))}
             </div>
+            : <Spinner/>}
             </FormGroup>
         </Form>
         </Container>

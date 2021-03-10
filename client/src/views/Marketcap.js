@@ -11,7 +11,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useContext } from "react";
 import axios from 'axios';
 // reactstrap components
 import {
@@ -28,9 +28,11 @@ import {
 // core components
 import Header from "components/Headers/Header.js";
 import Coin from '../components/Coin';
+import { UserContext } from "context/UserContext";
 
 function Marketcap()  {
   const [coins, setCoins] = useState([]);
+  const {loggedUser, setLoggedUser} = useContext(UserContext)
   const pageRef = useRef(1);
 
   const getApi = async () => {

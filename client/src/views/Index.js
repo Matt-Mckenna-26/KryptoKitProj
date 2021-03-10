@@ -33,6 +33,7 @@ import {
   Container,
   Row,
   Col,
+  Spinner,
 } from "reactstrap";
 
 // core components
@@ -52,46 +53,31 @@ import Login from "./Login";
 const Index = (props) => {
   const [activeNav, setActiveNav] = useState(1);
   const [chartExample1Data, setChartExample1Data] = useState("data1");
-  const [coinPricesObj, setCoinPricesObj] = useState({})
+  const [coinPricesObj, setCoinPricesObj] = useState(undefined)
   const {loggedUser, setLoggedUser} = useContext(UserContext);
+  const [userLoaded, setUserLoaded] = useState(false);
 
-  // const getTotalWalletCoinValue = () => {
-  //   let totalCoinValue = 0 
-  //   let currentCoinPrices = {} 
-  //   let queryParam = ''
-  //   loggedUser.coinsPortfolio.map((coin,idx) => {
-  //       queryParam += `${coin.coinId}%2C`
-  //   }) 
-  //           axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${queryParam}&vs_currencies=usd`,
-  //               )
-  //               .then(res => {
-  //                   currentCoinPrices = res.data
-  //                   setCoinPricesObj(res.data)
-  //                   console.log(currentCoinPrices)
-  //                       loggedUser.coinsPortfolio.map((coin, idx) => {
-  //                           let coinValue = coin.numberOfCoins * currentCoinPrices[`${coin.coinId}`].usd
-  //                           //store totalCoin Value in state to pass in req.body 
-  //                           totalCoinValue += coinValue;
-  //                           console.log(totalCoinValue);
-  //                       })
-  //                       axios.put(`http://localhost:8000/api/updateUserWallet/${loggedUser._id}/${loggedUser.wallet[0]._id}`,
-  //                       //store totalCoinValue in state to pass in req.body to update user coinBalance 
-  //                           {coinBalance : totalCoinValue,
-  //                           dollarBalance : loggedUser.wallet[0].dollarBalance
-  //                           }, {
-  //                               withCredentials: true
-  //                           })
-  //                           .then(res =>{console.log(res)
-  //                                   setLoggedUser(res.data)
-  //                           })
-  //                           .catch(err => console.log(`error updating the user wallets coin value`, {err}))
-  //                   })
-  //               .catch(err =>{console.log(`error fetching up to date prices`, {err})
-  //                               console.log(queryParam)
-  //           })
-  //       }
+  const getCurrentCoinPrices = () => {
+    let currentCoinPrices = {} 
+    let queryParam = ''
+    loggedUser.coinsPortfolio.map((coin,idx) => {
+        queryParam += `${coin.coinId}%2C`
+    }) 
+            axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${queryParam}&vs_currencies=usd`,
+                )
+                .then(res => {
+                    currentCoinPrices = res.data
+                    setCoinPricesObj(res.data)
+                    console.log('run')
+                    })
+                .catch(err =>{console.log(`error fetching up to date prices`, {err})
+            })
+  }
 
-  //   useEffect(() => getTotalWalletCoinValue(), [])
+  if (loggedUser.username !== undefined && userLoaded === false) {
+      getCurrentCoinPrices()
+      setUserLoaded(true)
+  }
 
   if (window.Chart) {
     parseOptions(Chart, chartOptions());
@@ -197,36 +183,36 @@ const Index = (props) => {
                   </div>
                 </Row>
               </CardHeader>
+              {coinPricesObj !== undefined ? 
               <Table className="align-items-center table-flush" responsive>
                 <thead className="thead-light">
                   <tr>
                     <th scope="col">Crypto</th>
-                    <th scope="col">Amount Purchased</th>
-                    <th scope="col" />
+                    <th scope="col">USD Balance</th>
+                    <th scope="col">% of Coin Balance</th>
                   </tr>
                 </thead>
                 <tbody>
                   {loggedUser.coinsPortfolio.map((coin, idx) => (
                     <tr>
                     <th scope="row">{coin.coinName}</th>
-                    <td>{coin.numberOfCoins}</td>
+                    <td>${(coin.numberOfCoins* coinPricesObj[coin.coinId].usd).toLocaleString(undefined, {minimumFractionDigits:2})}</td>
                     <td>
                       <div className="d-flex align-items-center">
-                        <span className="mr-2">60%</span>
+                        <span className="mr-2">{`${(((coin.numberOfCoins* coinPricesObj[coin.coinId].usd)/(loggedUser.wallet[0].coinBalance))*100).toLocaleString(undefined, {minimumFractionDigits:2})}`}%</span>
                         <div>
                           <Progress
                             max="100"
-                            // value={((coinPricesObj[coin.coinId].usd)/(loggedUser.wallet[0].coinValue))*100}
+                            value={`${((coin.numberOfCoins* coinPricesObj[coin.coinId].usd)/(loggedUser.wallet[0].coinBalance))*100}`}
                             barClassName="bg-gradient-primary"
                           />
                         </div>
                       </div>
                     </td>
-                  </tr>
-                  ))
-                  }       
+                  </tr>))
+                  }
                 </tbody>
-              </Table>
+              </Table> : <Spinner/>}
             </Card>
           </Col>
         </Row>

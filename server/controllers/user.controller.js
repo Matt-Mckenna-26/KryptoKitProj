@@ -138,7 +138,7 @@ module.exports.getCoinFromPortfolio = (req, res) => {
 //(buying and selling but not closing the total position i.e selling everything which would completely remove from the portfolio)
 module.exports.updateCoinInPortfolio= (req, res) => {
   let userId =  req.params.userId
-  User.findOneAndUpdate({_id: userId, 'coinsPortfolio.ticker': req.params.coinTicker }, 
+  User.findOneAndUpdate({_id: userId, 'coinsPortfolio.coinId': req.params.coinId }, 
     {
       $set: {
         'coinsPortfolio.$.avgCost': req.body.avgCost,

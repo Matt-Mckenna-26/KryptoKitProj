@@ -13,6 +13,7 @@ import {
   InputGroupText,
   InputGroup,
   Label,
+  Spinner,
 } from "reactstrap";
 
 import axios from 'axios';
@@ -139,9 +140,8 @@ const BuySellForm = ({loggedUser, setLoggedUser}) => {
                 value = {selectedCoin !== undefined ? thisTransactionDollars/selectedCoin.market_data.current_price.usd : 0}
                 />
             </InputGroup>
-            <div style={{ height:"420px",overflowY:"scroll"}}>
-            {
-            allCrypto.map((list, index) => (
+                <div style={{ height:"420px",overflowY:"scroll"}}>
+            {allCrypto.map((list, index) => (
                 <Card className="singleCoin shadow-sm" style={{ display:"inline-grid", width: "12em", margin:".5em", minHeight:"250px" }} key={index}>
                     <CardHeader className="bg-transparent text-center" style={{maxHeight:"100px"}}>
                         <img src={list.image.small} />
@@ -160,7 +160,7 @@ const BuySellForm = ({loggedUser, setLoggedUser}) => {
                         />
                     </CardBody>
                 </Card>
-            ))
+                ))
             }
             </div>
             </FormGroup>
