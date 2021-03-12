@@ -16,7 +16,7 @@ module.exports = app => {
   app.get("/api/users/loggedin", authenticate, UserController.getLoggedInUser);
 
   //used to get a specific coin, useful to store toatl dollars when user opens transaction page on a specific coin 
-  app.get("/api/coinInfo/:userId/:coinName", authenticate, UserController.getCoinFromPortfolio);
+  app.get("/api/coinInfo/:userId/:coinId", authenticate, UserController.getCoinFromPortfolio);
 
   //route to add/remove a coin to user watchlist 
   app.put("api/addToWatch/:userId", authenticate, UserController.addCoinToWatchlist);
