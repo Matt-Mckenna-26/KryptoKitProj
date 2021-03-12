@@ -118,9 +118,9 @@ module.exports.addCoinToPortfolio= (req, res) => {
 // be used with the update wallet method to deposit those dollars back into the user acct.
 module.exports.closeCoinPosition = (req, res) => {
   let userId = req.params.userId
-  User.findOneAndUpdate({_id: userId},{$pull: {coinsPortfolio: req.params.coinName}}, {new:true, useFindAndModify:false})
+  User.findOneAndUpdate({_id: userId},{$pull: {coinsPortfolio: req.body}}, {new:true, useFindAndModify:false})
   .then(newWatchList => {
-    res.send({newWatchList})
+    res.send(newWatchList)
     }
   )
   .catch( err => {

@@ -136,7 +136,7 @@ const getTotalWalletCoinValue = (loggedInUser) => {
                 .then(res => {
                     currentCoinPrice = res.data[coinName].usd
                         axios.put(`/api/buysell/${loggedInUser._id}/${coinName}`,
-                        {dollarsSpent: dollarsSpent + thisTransactionDollars,
+                        {userDollarsSpent: dollarsSpent + thisTransactionDollars,
                         numberOfCoins: currentCoinPrice/(dollarsSpent + thisTransactionDollars),
                         avgCost: numberOfCoins/(dollarsSpent + thisTransactionDollars) })
                             .then(res => console.log(res))
