@@ -17,11 +17,10 @@ import {
 } from "reactstrap";
 
 import axios from 'axios';
-import { UserContext } from 'context/UserContext';
 import { set } from 'mongoose';
 
 const SellForm = ({loggedUser, setLoggedUser}) => {
-    const [ thisTransactionDollars, setThisTransactionDollars ] = useState("");
+    const [ thisTransactionDollars, setThisTransactionDollars ] = useState(Number);
     const [ errs, setErrs ] = useState({});
     const [selectedCoin, setSelectedCoin] = useState(undefined);
     const [coinPricesObj, setCoinPricesObj] = useState(undefined);
@@ -29,10 +28,11 @@ const SellForm = ({loggedUser, setLoggedUser}) => {
 
     console.log(selectedCoin)
 
-    const setWalletValueAfterSell = (newUser) => {
+    const setWalletValueAfterSell = (newUser, method) => {
         let totalCoinValue = 0 
         let currentCoinPrices = {} 
         let queryParam = ''
+        console.log(selectedCoin.numberOfCoins* coinPricesObj[selectedCoin.coinId].usd)
         newUser.coinsPortfolio.map((coin,idx) => {
             queryParam += `${coin.coinId}%2C`
         }) 
@@ -49,7 +49,7 @@ const SellForm = ({loggedUser, setLoggedUser}) => {
                             })
                             axios.put(`http://localhost:8000/api/updateUserWallet/${newUser._id}/${newUser.wallet[0]._id}`,
                             //store totalCoinValue in state to pass in req.body to update user coinBalance 
-                                {dollarBalance : (parseFloat(newUser.wallet[0].dollarBalance) + parseFloat(thisTransactionDollars)),
+                                {dollarBalance : (parseFloat(newUser.wallet[0].dollarBalance) + (method !== 'sellAll' ? parseFloat(thisTransactionDollars) : parseFloat(selectedCoin.numberOfCoins* coinPricesObj[selectedCoin.coinId].usd))),
                                     coinBalance : totalCoinValue,
                                 }
                                 ,{
@@ -66,10 +66,21 @@ const SellForm = ({loggedUser, setLoggedUser}) => {
                 setSelectedCoin(undefined)
                 setThisTransactionDollars(0)
             }
+// To sell all of a coin in the porfolio 
+const sellAllOfACoin = (e) => {
+            axios.put(`http://localhost:8000/api/sellAll/${loggedUser._id}`,
+            {
+                coinId:selectedCoin.coinId
+            }, {withCredentials:true})
+                        .then(res => {console.log(res.data)
+                            setWalletValueAfterSell(res.data, 'sellAll')
+                        })
+                        .catch(err => console.log('Error Selling all of Coin'))
+}
 
 
 
-
+//to sell ** some of a coin in portfolio**
     const sellCoin = (e) => {
         let amountSold = thisTransactionDollars
         let numOfCoinsSold = (thisTransactionDollars /((coinPricesObj[selectedCoin.coinId].usd)))
@@ -82,7 +93,7 @@ const SellForm = ({loggedUser, setLoggedUser}) => {
         })
         .then((res) => {
             console.log(res.data)
-            setWalletValueAfterSell(res.data)
+            setWalletValueAfterSell(res.data, 'sellSome')
         })
         .catch((err) => console.log({err}));  
     }
@@ -154,6 +165,12 @@ const SellForm = ({loggedUser, setLoggedUser}) => {
                 value = {selectedCoin !== undefined ? (thisTransactionDollars/(coinPricesObj[selectedCoin.coinId].usd)): 0}
                 />
             </InputGroup>
+            {selectedCoin !== undefined ?
+            <InputGroup className="input-group-alternative center" style={{width:"400px", margin:".5em 0 1em 0"}}>
+                <Button className="ni ni-check-bold mx-auto" color="danger" onClick={(e) => sellAllOfACoin()}>
+                Sell All of your {selectedCoin.coinName}.
+                </Button>
+            </InputGroup>: null}
             {coinPricesObj !== undefined ? 
             <div style={{ height:"420px",overflowY:"scroll"}}>
             {loggedUser.coinsPortfolio.map((coin, idx) => (

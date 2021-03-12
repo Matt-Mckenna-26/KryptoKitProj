@@ -24,7 +24,7 @@ module.exports = app => {
 
   //Routes for inital purchase and selling all of a coin (removing it from the portfolio)
   app.put("/api/firstBuy/:userId", authenticate, UserController.addCoinToPortfolio);
-  app.put("/api/sellAll/:userId/:coinName", authenticate, UserController.closeCoinPosition);
+  app.put("/api/sellAll/:userId", authenticate, UserController.closeCoinPosition);
 
   //Route here is used for subsequent transactions (buying more... selling some(not all!))
   app.put("/api/buysell/:userId/:coinId", authenticate, UserController.updateCoinInPortfolio);
