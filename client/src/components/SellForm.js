@@ -1,5 +1,5 @@
 import React, {useContext, useState, useEffect } from 'react';
-import { navigate, Link } from '@reach/router';
+import { useHistory } from 'react-router';
 import {
   Card,
   CardHeader,
@@ -25,6 +25,7 @@ const SellForm = ({loggedUser, setLoggedUser}) => {
     const [selectedCoin, setSelectedCoin] = useState(undefined);
     const [coinPricesObj, setCoinPricesObj] = useState(undefined);
     const [userLoaded, setUserLoaded] = useState(false);
+    const history = useHistory();
 
     console.log(selectedCoin)
 
@@ -49,7 +50,7 @@ const SellForm = ({loggedUser, setLoggedUser}) => {
                             })
                             axios.put(`http://localhost:8000/api/updateUserWallet/${newUser._id}/${newUser.wallet[0]._id}`,
                             //store totalCoinValue in state to pass in req.body to update user coinBalance 
-                                {dollarBalance : (parseFloat(newUser.wallet[0].dollarBalance) + (method !== 'sellAll' ? parseFloat(thisTransactionDollars) : parseFloat(selectedCoin.numberOfCoins* coinPricesObj[selectedCoin.coinId].usd))),
+                                {dollarBalance : (parseFloat(newUser.wallet[0].dollarBalance) + (method !== 'sellAll' ? parseFloat(thisTransactionDollars) : selectedCoin.numberOfCoins* coinPricesObj[selectedCoin.coinId].usd)),
                                     coinBalance : totalCoinValue,
                                 }
                                 ,{
@@ -76,9 +77,8 @@ const sellAllOfACoin = (e) => {
                             setWalletValueAfterSell(res.data, 'sellAll')
                         })
                         .catch(err => console.log('Error Selling all of Coin'))
+                        history.push("/");
 }
-
-
 
 //to sell ** some of a coin in portfolio**
     const sellCoin = (e) => {
@@ -96,6 +96,7 @@ const sellAllOfACoin = (e) => {
             setWalletValueAfterSell(res.data, 'sellSome')
         })
         .catch((err) => console.log({err}));  
+        history.push("/");
     }
 
 
@@ -166,11 +167,24 @@ const sellAllOfACoin = (e) => {
                 />
             </InputGroup>
             {selectedCoin !== undefined ?
+            <>
+            <InputGroup className="input-group-alternative center" style={{width:"400px", margin:".5em 0 1em 0"}}>
+            <Label className = 'p-2'>Total Balance (USD)</Label>
+            <Input
+                className ='p-2'
+                name="Total Balance"
+                disabled={true}
+                type="text"
+                defaultValue = {0}
+                value = {selectedCoin.numberOfCoins* coinPricesObj[selectedCoin.coinId].usd}
+                />
+            </InputGroup>
             <InputGroup className="input-group-alternative center" style={{width:"400px", margin:".5em 0 1em 0"}}>
                 <Button className="ni ni-check-bold mx-auto" color="danger" onClick={(e) => sellAllOfACoin()}>
                 Sell All of your {selectedCoin.coinName}.
                 </Button>
-            </InputGroup>: null}
+            </InputGroup>
+            </>: null}
             {coinPricesObj !== undefined ? 
             <div style={{ height:"420px",overflowY:"scroll"}}>
             {loggedUser.coinsPortfolio.map((coin, idx) => (

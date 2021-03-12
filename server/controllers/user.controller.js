@@ -131,7 +131,7 @@ module.exports.closeCoinPosition = (req, res) => {
 //get specific coin info that is in your porfolio (avg cost, number of coins, dollars)
 module.exports.getCoinFromPortfolio = (req, res) => {
 	User.findOne({ _id: req.params.userId })
-  .then(user => res.send(user.coinsPortfolio.id(req.params.coinName)))
+  .then(user => res.send(user.coinsPortfolio.id(req.params.coinId)))
   .catch(err => res.status(400).send(err))
 }
 //Used for updating the coin in portfolio 

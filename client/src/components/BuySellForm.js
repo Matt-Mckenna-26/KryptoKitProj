@@ -1,5 +1,5 @@
 import React, {useContext, useState, useEffect } from 'react';
-import { navigate, Link } from '@reach/router';
+import { useHistory } from 'react-router';
 import {
   Card,
   CardHeader,
@@ -24,6 +24,10 @@ const BuySellForm = ({loggedUser, setLoggedUser}) => {
     const [ allCrypto, setAllCrypto ] = useState([]);
     const [ errs, setErrs ] = useState({});
     const [selectedCoin, setSelectedCoin] = useState(undefined);
+    const [selectedCoinPortfolioId, setSelectedCoinPortfolioId] = useState(null)
+    const history = useHistory();
+
+    console.log(selectedCoin)
     
     useEffect(() => {
         axios
@@ -83,22 +87,45 @@ const BuySellForm = ({loggedUser, setLoggedUser}) => {
                             withCredentials: true
                             })
                                 .then(res =>{console.log(res.data)
-                                    setLoggedUser(res.data)
                                     getTotalWalletCoinValue(res.data)
                                 })
                                 .catch(err => console.log('Error Purchasing Coin', {err}))
     }
 
-    // const submitAddtlBuy = () => {
-    //         let currentCoinPrice = selectedCoin.market_data.current_price.usd 
-    //         let coinName = selectedCoin.id 
-    //             axios.put(`/api/buysell/${loggedUser._id}/${coinName}`,
-    //                     {userDollarsSpent: loggedUser.coinPortfolio[+userDollarsSpent,
-    //                     numberOfCoins: currentCoinPrice/(dollarsSpent + thisTransactionDollars),
-    //                     avgCost: numberOfCoins/(dollarsSpent + thisTransactionDollars) })
-    //                         .then(res => console.log(res))
-    //                         .catch(err => console.log(err))
-    //     }
+    const submitAddtlBuy = (addtlCoin) => {
+            let addtlAmmountBought = thisTransactionDollars
+            let numOfCoinsBought = (thisTransactionDollars /(selectedCoin.market_data.current_price.usd ))
+                axios.put(`http://localhost:8000/api/buysell/${loggedUser._id}/${addtlCoin.coinId}`,
+                        {userDollarsSpent: parseFloat(addtlCoin.userDollarsSpent) + parseFloat(addtlAmmountBought),
+                        numberOfCoins: addtlCoin.numberOfCoins + numOfCoinsBought,
+                        avgCost: (addtlCoin.numberOfCoins + numOfCoinsBought)/(addtlCoin.userDollarsSpent + thisTransactionDollars) }, {withCredentials:true})
+                            .then(res => {
+                                console.log(res)
+                                getTotalWalletCoinValue(res.data)
+                            })
+                            .catch(err => console.log({err}))
+
+        }
+
+    const buyACoin = () => {
+        let selectedCoinId = ''
+        loggedUser.coinsPortfolio.map((coin, idx) => {
+            selectedCoin.id === coin.coinId ? selectedCoinId = coin._id : console.log('not found')
+        })
+        console.log(selectedCoinId)
+        axios.get(`http://localhost:8000/api/coinInfo/${loggedUser._id}/${selectedCoinId}`,
+        {withCredentials: true})
+            .then(res => {console.log(res)
+                console.log(res.data)
+                submitAddtlBuy(res.data)
+            })
+            .catch(err => {
+                submitFirstBuy()
+                console.log({err})
+            })
+    }
+
+
 
     return(
         <Container fluid>
@@ -128,7 +155,7 @@ const BuySellForm = ({loggedUser, setLoggedUser}) => {
                 
                 onChange={ (e) => setThisTransactionDollars(e.target.value)}
                 />
-                <Button className="ni ni-check-bold" color="primary" onClick = {(e) => submitFirstBuy()}>
+                <Button className="ni ni-check-bold" color="primary" onClick = {(e) => buyACoin()}>
                 Buy Coin
                 </Button>
             </InputGroup>
