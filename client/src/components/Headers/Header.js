@@ -44,7 +44,7 @@ const Header = () => {
                             totalCoinValue += coinValue;
                             console.log(totalCoinValue);
                         })
-                        axios.put(`http://localhost:8000/api/updateUserWallet/${loggedUser._id}/${loggedUser.wallet[0]._id}`,
+                        axios.put(`/api/updateUserWallet/${loggedUser._id}/${loggedUser.wallet[0]._id}`,
                         //store totalCoinValue in state to pass in req.body to update user coinBalance 
                             {coinBalance : totalCoinValue,
                             dollarBalance : loggedUser.wallet[0].dollarBalance
