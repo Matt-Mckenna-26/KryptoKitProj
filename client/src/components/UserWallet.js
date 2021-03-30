@@ -1,6 +1,7 @@
 import React, {useContext, useState} from 'react';
 import axios from 'axios';
 import {UserContext} from '../context/UserContext';
+import { useHistory } from 'react-router';
 import {
     Container,
     Row,
@@ -34,7 +35,8 @@ const UserWallet = () => {
         <div>
         
             <h1>Wallet Component</h1>
-             {loggedUser.coinsPortfolio.map((coin, idx)=>(
+            {loggedUser.coinsPortfolio.map((coin, idx)=>(
+              <>
                   <div className="col-3">
                   <Card className="shadow">
                     <CardHeader className="bg-transparent">
@@ -58,6 +60,7 @@ const UserWallet = () => {
                     <p>{coin.numberOfCoins}</p>
                     <p>{coin.userDollarsSpent}</p>
                 </div>
+              </>
             ))}
         </div>
     )

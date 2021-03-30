@@ -12,7 +12,7 @@
 
 */
 import Index from "views/Index.js";
-//import Profile from "views/Profile.js";
+import Trending from "views/Trending.js";
 //import Maps from "views/Maps.js";
 import Register from "views/Register.js";
 import Login from "views/Login.js";
@@ -66,6 +66,13 @@ var routes = [
   //   icon: "ni ni-credit-card text-grey",
   //   component: Wallet,
   {
+    path: "/trending",
+    name: "Trending Now",
+    icon: "ni ni-spaceship text-purple",
+    component: Trending,
+    layout: "/admin",
+  },
+  {
     path: "/marketcap",
     name: "Marketcap",
     icon: "ni ni-sound-wave text-purple",
@@ -100,13 +107,6 @@ var routes = [
     component: Register,
     layout: "/auth",
   },
-  // email
-  // {
-  //   path: "/user-profile",
-  //   name: "",
-  //   icon: "",
-  //   component: Profile,
-  //   layout: "/admin",
-  // },
+
 ];
 export default routes;

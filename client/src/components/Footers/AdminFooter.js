@@ -37,7 +37,7 @@ const Footer = () => {
 
         <Col xl="6">
           <Nav className="nav-footer justify-content-center justify-content-xl-end">
-            <NavItem>
+            {/* <NavItem>
               <NavLink
                 href="https://www.codingdojo.com?ref=adr-admin-footer"
                 rel="noopener noreferrer"
@@ -45,7 +45,7 @@ const Footer = () => {
               >
                 CodingDojo
               </NavLink>
-            </NavItem>
+            </NavItem> */}
 
             <NavItem>
               <NavLink
