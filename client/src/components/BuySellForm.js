@@ -114,7 +114,7 @@ const BuySellForm = ({loggedUser, setLoggedUser}) => {
             selectedCoin.id === coin.coinId ? selectedCoinId = coin._id : console.log('not found')
         })
         console.log(selectedCoinId)
-        axios.get(`http://localhost:8000/api/coinInfo/${loggedUser._id}/${selectedCoinId}`,
+        axios.get(`/api/coinInfo/${loggedUser._id}/${selectedCoinId}`,
         {withCredentials: true})
             .then(res => {console.log(res)
                 console.log(res.data)
