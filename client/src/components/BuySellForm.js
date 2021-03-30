@@ -118,7 +118,7 @@ const BuySellForm = ({loggedUser, setLoggedUser}) => {
         {withCredentials: true})
             .then(res => {console.log(res)
                 console.log(res.data)
-                if(res.config.data !== undefined){
+                if(res.data.userDollarsSpent !== undefined){
                 submitAddtlBuy(res.data)
                 } else {
                     submitFirstBuy()
