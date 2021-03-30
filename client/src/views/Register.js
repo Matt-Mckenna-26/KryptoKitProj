@@ -50,7 +50,7 @@ const Register = () => {
       }
       }
     axios
-      .post("http://localhost:8000/api/register", newUser, {
+      .post("/api/register", newUser, {
         withCredentials: true
     })
     .then(res => {
