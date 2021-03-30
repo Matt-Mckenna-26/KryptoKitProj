@@ -9,6 +9,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import {GlobalContext} from './ContextProvider';
+import { useHistory } from 'react-router';
 import axios from 'axios';
 // reactstrap components
 import {
@@ -32,6 +33,14 @@ const Wallet = () => {
     const {loggedUser, setLoggedUser} = useContext(UserContext);
     const [userLoaded, setUserLoaded] = useState(false);
     const [coinPricesObj, setCoinPricesObj] = useState(undefined)
+    const history = useHistory();
+
+    const navToBuy = () => {
+      history.push('buy');
+    }
+    const navToSell = () => {
+      history.push('sell');
+    }
 
 
     const getCurrentCoinPrices = () => {
@@ -79,8 +88,8 @@ const Wallet = () => {
       <p className="text-uppercase text-muted mb-2"><b>Current Value:</b>
       <span style={{
         color: coin.userDollarsSpent > (coin.numberOfCoins * coinPricesObj[coin.coinId].usd).toLocaleString(undefined, {minimumFractionDigits:2}) ? "red" : "green"}}><b> ${(coin.numberOfCoins * coinPricesObj[coin.coinId].usd).toLocaleString(undefined, {minimumFractionDigits:2})}</b></span></p>
-      <Button>Buy More</Button>
-      <Button>Sell</Button>
+      <Button onClick={(e) => navToBuy()}>Buy More</Button>
+      <Button onClick={(e) => navToSell()}>Sell</Button>
              </Row>
            </CardBody>
          </Card>

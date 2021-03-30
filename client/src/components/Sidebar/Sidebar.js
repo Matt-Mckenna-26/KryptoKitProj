@@ -238,8 +238,7 @@ const Sidebar = (props) => {
           {/* Divider */}
           <hr className="my-3" />
           {/* Heading */}
-          <h6 className="navbar-heading text-muted">App Developers</h6>
-          {/* Navigation */}
+          {/* <h6 className="navbar-heading text-muted">App Developers</h6>
           <Nav className="mb-md-3" navbar>
             <NavItem>
               <NavLink href="https://github.com/Matt-Mckenna-26/Crypto-Group-Proj?ref=adr-admin-sidebar">
@@ -324,7 +323,7 @@ const Sidebar = (props) => {
                 Inspired by CodingDojo
               </NavLink>
             </NavItem>
-          </Nav>
+          </Nav> */}
         </Collapse>
       </Container>
     </Navbar>

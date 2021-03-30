@@ -64,6 +64,7 @@ const BuySellForm = ({loggedUser, setLoggedUser}) => {
                                 })
                                 .then(res =>{console.log(res)
                                         setLoggedUser(res.data)
+                                        history.push("/");
                                 })
                                 .catch(err => console.log(`error updating the user wallets coin value`, {err}))
                         })
@@ -131,7 +132,7 @@ const BuySellForm = ({loggedUser, setLoggedUser}) => {
         <Container fluid>
         <Form role="form">
             <FormGroup className="mb-3">
-            <InputGroup className="input-group-alternative center" style={{width:"400px", margin:".5em 0 1em 0"}}>
+            <InputGroup className="input-group-alternative center" style={{width:"100%", margin:".5em 0 1em 0"}}>
             <Input 
                 name="selectedCoinName"
                 disabled={true}
@@ -140,7 +141,7 @@ const BuySellForm = ({loggedUser, setLoggedUser}) => {
                 value = {selectedCoin !== undefined ? selectedCoin.name : 'Select a coin below to purchase'}
                 />
             </InputGroup>
-            <InputGroup className="input-group-alternative center" style={{width:"400px", margin:".5em 0 1em 0"}}>
+            <InputGroup className="input-group-alternative center" style={{width:"100%", margin:".5em 0 1em 0"}}>
                 <InputGroupAddon addonType="prepend">
                 <InputGroupText>
                     <i className="ni ni-lock-circle-open" />
@@ -159,7 +160,7 @@ const BuySellForm = ({loggedUser, setLoggedUser}) => {
                 Buy Coin
                 </Button>
             </InputGroup>
-            <InputGroup className="input-group-alternative center" style={{width:"400px", margin:".5em 0 1em 0"}}>
+            <InputGroup className="input-group-alternative center" style={{width:"100%", margin:".5em 0 1em 0"}}>
             <Label className = 'p-2'>Number of Coins</Label>
             <Input
                 className ='p-2'
