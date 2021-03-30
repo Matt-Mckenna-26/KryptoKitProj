@@ -1,8 +1,7 @@
 {
-  "name": "kryptokit",
+  "name": "client",
   "version": "1.2.0",
   "description": "Crypto Dashboard created as group project for CodingDojo",
-  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dannjing/KryptoKit.git"
