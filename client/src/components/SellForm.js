@@ -48,7 +48,7 @@ const SellForm = ({loggedUser, setLoggedUser}) => {
                                 totalCoinValue += coinValue;
                                 console.log(totalCoinValue);
                             })
-                            axios.put(`http://localhost:8000/api/updateUserWallet/${newUser._id}/${newUser.wallet[0]._id}`,
+                            axios.put(`/api/updateUserWallet/${newUser._id}/${newUser.wallet[0]._id}`,
                             //store totalCoinValue in state to pass in req.body to update user coinBalance 
                                 {dollarBalance : (parseFloat(newUser.wallet[0].dollarBalance) + (method !== 'sellAll' ? parseFloat(thisTransactionDollars) : selectedCoin.numberOfCoins* coinPricesObj[selectedCoin.coinId].usd)),
                                     coinBalance : totalCoinValue,
