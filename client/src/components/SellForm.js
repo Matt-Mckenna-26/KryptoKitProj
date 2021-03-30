@@ -70,7 +70,7 @@ const SellForm = ({loggedUser, setLoggedUser}) => {
             }
 // To sell all of a coin in the porfolio 
 const sellAllOfACoin = (e) => {
-            axios.put(`http://localhost:8000/api/sellAll/${loggedUser._id}`,
+            axios.put(`/api/sellAll/${loggedUser._id}`,
             {
                 coinId:selectedCoin.coinId
             }, {withCredentials:true})
@@ -85,7 +85,7 @@ const sellAllOfACoin = (e) => {
     const sellCoin = (e) => {
         let amountSold = thisTransactionDollars
         let numOfCoinsSold = (thisTransactionDollars /((coinPricesObj[selectedCoin.coinId].usd)))
-        axios.put(`http://localhost:8000/api/buysell/${loggedUser._id}/${selectedCoin.coinId}`, {
+        axios.put(`/api/buysell/${loggedUser._id}/${selectedCoin.coinId}`, {
             userDollarsSpent: (selectedCoin.userDollarsSpent - amountSold),
             numberOfCoins: (selectedCoin.numberOfCoins - numOfCoinsSold),
             avgCost: ((selectedCoin.userDollarsSpent - amountSold)/(selectedCoin.numberOfCoins - numOfCoinsSold))

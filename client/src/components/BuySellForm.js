@@ -55,7 +55,7 @@ const BuySellForm = ({loggedUser, setLoggedUser}) => {
                                 totalCoinValue += coinValue;
                                 console.log(totalCoinValue);
                             })
-                            axios.put(`http://localhost:8000/api/updateUserWallet/${newUser._id}/${newUser.wallet[0]._id}`,
+                            axios.put(`/api/updateUserWallet/${newUser._id}/${newUser.wallet[0]._id}`,
                             //store totalCoinValue in state to pass in req.body to update user coinBalance 
                                 {coinBalance : totalCoinValue,
                                 dollarBalance : loggedUser.wallet[0].dollarBalance - thisTransactionDollars
@@ -77,7 +77,7 @@ const BuySellForm = ({loggedUser, setLoggedUser}) => {
 
     const submitFirstBuy = () => {
         console.log(loggedUser)
-        axios.put(`http://localhost:8000/api/firstBuy/${loggedUser._id}`,
+        axios.put(`/api/firstBuy/${loggedUser._id}`,
                             {coinName: selectedCoin.name,
                             coinId: selectedCoin.id,
                             avgCost: selectedCoin.market_data.current_price.usd,
@@ -96,7 +96,7 @@ const BuySellForm = ({loggedUser, setLoggedUser}) => {
     const submitAddtlBuy = (addtlCoin) => {
             let addtlAmmountBought = thisTransactionDollars
             let numOfCoinsBought = (thisTransactionDollars /(selectedCoin.market_data.current_price.usd ))
-                axios.put(`http://localhost:8000/api/buysell/${loggedUser._id}/${addtlCoin.coinId}`,
+                axios.put(`/api/buysell/${loggedUser._id}/${addtlCoin.coinId}`,
                         {userDollarsSpent: parseFloat(addtlCoin.userDollarsSpent) + parseFloat(addtlAmmountBought),
                         numberOfCoins: addtlCoin.numberOfCoins + numOfCoinsBought,
                         avgCost: (addtlCoin.numberOfCoins + numOfCoinsBought)/(addtlCoin.userDollarsSpent + thisTransactionDollars) }, {withCredentials:true})
@@ -171,6 +171,7 @@ const BuySellForm = ({loggedUser, setLoggedUser}) => {
                 value = {selectedCoin !== undefined ? thisTransactionDollars/selectedCoin.market_data.current_price.usd : 0}
                 />
             </InputGroup>
+            {allCrypto[0] === undefined ? <Spinner/> :(
                 <div style={{ height:"420px",overflowY:"scroll"}}>
             {allCrypto.map((list, index) => (
                 <Card className="singleCoin shadow-sm" style={{ display:"inline-grid", width: "12em", margin:".5em", minHeight:"250px" }} key={index}>
@@ -193,7 +194,7 @@ const BuySellForm = ({loggedUser, setLoggedUser}) => {
                 </Card>
                 ))
             }
-            </div>
+            </div>)}
             </FormGroup>
         </Form>
         </Container>

@@ -64,7 +64,7 @@ const Login = ({}) => {
     setToken(token);
     axios
         .post(
-            "http://localhost:8000/api/login",
+            "/api/login",
             { email, password },
             {
                 withCredentials: true
@@ -72,7 +72,7 @@ const Login = ({}) => {
         )
         .then(res => {
             console.log(res);
-            axios.get("http://localhost:8000/api/users/loggedin", {
+            axios.get("/api/users/loggedin", {
                     withCredentials: true
                     })
                     .then(res => {
