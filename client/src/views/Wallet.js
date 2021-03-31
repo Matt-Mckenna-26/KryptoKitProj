@@ -74,9 +74,9 @@ const Wallet = () => {
       <Row style={{padding:"10px"}}>
 
       {loggedUser.coinsPortfolio.map((coin, idx)=>(
-         <div className="col-3 mt-3 mb-4">
+         <div className="col-sm-10 col-md-3 mx-auto my-2">
          <Card className="shadow mb-4" style={{borderRadius:"15px"}}>
-           <CardHeader className="bg-transparent" >
+           <CardHeader className="bg-transparent mx-auto" >
              <h3 className="mb-0">{coin.coinName}<img src={coin.coinLogo} className="ml-4" style={{height:"40px"}} alt=""/></h3>
               
            </CardHeader>
@@ -84,12 +84,12 @@ const Wallet = () => {
              <Row className="icon-examples">
              
       
-      <p className="text-uppercase text-muted mb-0"><b>Balance (USD):</b> <span style={{color:"black"}}><b>  ${coin.userDollarsSpent}</b></span></p>
-      <p className="text-uppercase text-muted mb-2"><b>Current Value:</b>
+      <p className="text-uppercase text-muted mb-0 m-3"><b>Invested (USD):</b> <span style={{color:"black"}}><b>  ${coin.userDollarsSpent}</b></span></p>
+      <p className="text-uppercase text-muted mb-2 m-3"><b>Current Value:</b>
       <span style={{
         color: coin.userDollarsSpent > (coin.numberOfCoins * coinPricesObj[coin.coinId].usd).toLocaleString(undefined, {minimumFractionDigits:2}) ? "red" : "green"}}><b> ${(coin.numberOfCoins * coinPricesObj[coin.coinId].usd).toLocaleString(undefined, {minimumFractionDigits:2})}</b></span></p>
-      <Button onClick={(e) => navToBuy()}>Buy More</Button>
-      <Button onClick={(e) => navToSell()}>Sell</Button>
+      <Button onClick={(e) => navToBuy()} className='m-3'>Buy More</Button>
+      <Button onClick={(e) => navToSell()} className='m-3'>Sell</Button>
              </Row>
            </CardBody>
          </Card>
